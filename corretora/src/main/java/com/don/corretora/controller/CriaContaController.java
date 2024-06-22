@@ -8,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.don.corretora.model.Usuario;
 import com.don.corretora.model.UsuarioDto;
@@ -18,7 +17,7 @@ import jakarta.validation.Valid;
 
 @Controller
 @Service
-public class CriarConta {
+public class CriaContaController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -45,6 +44,6 @@ public class CriarConta {
 
         usuarioRepository.save(usuario);
 
-        return "redirect:/index";
+        return "redirect:/home";
     }
 }
