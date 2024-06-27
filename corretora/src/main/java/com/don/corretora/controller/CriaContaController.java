@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.don.corretora.model.Usuario;
 import com.don.corretora.model.UsuarioDto;
@@ -21,6 +22,8 @@ public class CriaContaController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    PasswordEncoder passwordEncoder;
     
 
     @GetMapping("/cadastrar")
@@ -37,11 +40,20 @@ public class CriaContaController {
             return "cadastro/usuario";
         }
 
+
+        if(usuarioRepository.existsByNome((usuarioDto.getNome()))){
+            bindingResult.rejectValue("nome", "error.usuarioDto", "Este nome já está em uso");
+            return "cadastro/usuario";
+            
+        }
+
         Usuario usuario = new Usuario();
 
         usuario.setNome(usuarioDto.getNome());
-        usuario.setSenha(usuarioDto.getSenha());
 
+        String senhaCriptada = this.passwordEncoder.encode(usuarioDto.getSenha());
+
+        usuario.setSenha(senhaCriptada);
         usuarioRepository.save(usuario);
 
         return "redirect:/home";
