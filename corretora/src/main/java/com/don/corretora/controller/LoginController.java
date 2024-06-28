@@ -49,9 +49,9 @@ public class LoginController {
 
             } else {
                 System.out.println("Login nao existe ou Login Incorreto");
-                return "redirect:/login?error";
+                return "redirect:/backoffice/login?error";
             }
         }
-        return "redirect:/login?error";
+        return "redirect:/backoffice/login?error";
     }
 }

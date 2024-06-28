@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link   rel="stylesheet" type="text/css" href="/css/login.css">
+</head>
+<body>
+<main class="container">
+    
+    <section id="container_login">
+
+
+        <section id="container_input">
+            <form th:action="@{/login}" th:object="${funcionarioDto}" method="post">
+                <div>
+                    <h1>Login</h1>
+                </div>
+                <div class="container_email">
+                    <h2>EMAIL</h2>
+                    <input type="text"  name="nome">
+                </div>
+                <div class="container_senha">
+                    <h2>SENHA</h2>
+                    <input type="password"  name="senha">
+                </div>
+                <div th:if="${param.error != null}" class="alert alert-danger" role="alert">
+                    <a style="color: red; font-weight: bold; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 20px;">Login não existe</a>
+                </div>
+                <div class="container_button">
+                    <button type="submit" value="Sign Up">
+                        Login
+                    </button>
+                </div>
+
+                
+            </form>
+
+        </section>
+    </section>
+
+
+</main>
+</body>
+</html>
