@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link   rel="stylesheet" type="text/css" href="/css/login.css">
 </head>
 <body>
 <main class="container">
@@ -13,13 +12,13 @@
 
 
         <section id="container_input">
-            <form th:action="@{/login}" th:object="${funcionarioDto}" method="post">
+            <form th:action="@{/backoffice/login}" th:object="${funcionarioDto}" method="post">
                 <div>
                     <h1>Login</h1>
                 </div>
                 <div class="container_email">
                     <h2>EMAIL</h2>
-                    <input type="text"  name="nome">
+                    <input type="email"  name="email">
                 </div>
                 <div class="container_senha">
                     <h2>SENHA</h2>

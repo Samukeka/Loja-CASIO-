@@ -7,5 +7,31 @@
 </head>
 <body>
     <h1>Pagina Do backoffice</h1>
+    <main>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Cargo</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaFuncionarios">
+                <tr th:each="funcionario : ${funcionarios}" id="funcionarioRow">
+                    <td th:text="${funcionario.id}"></td>
+                    <td th:text="${funcionario.nome}"></td>
+                    <td th:text="${funcionario.email}"></td>
+                    <td th:text="${funcionario.cargo}"></td>
+                    <td style="white-space:nowrap">
+                    <a class="btn btn-primary btn-sm">Editar</a>    
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    </main>
 </body>
 </html>
