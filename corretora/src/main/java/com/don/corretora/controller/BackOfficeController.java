@@ -1,23 +1,31 @@
 package com.don.corretora.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.don.corretora.model.Funcionario;
 import com.don.corretora.model.FuncionarioDto;
+import com.don.corretora.model.Usuario;
 import com.don.corretora.repository.FuncionarioRepository;
+import com.don.corretora.repository.UsuarioRepository;
 
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 @Controller
 @Service
@@ -29,6 +37,9 @@ public class BackOfficeController {
 
     PasswordEncoder passwordEncoder;
 
+    public BackOfficeController(FuncionarioRepository funcionarioRepository) {
+        this.passwordEncoder = new BCryptPasswordEncoder();
+    }
 
     @GetMapping("/login")
     public String getPageLogin() {
@@ -36,13 +47,28 @@ public class BackOfficeController {
     }
 
     @GetMapping("/home")
-    public String getPageHome() {
+    public String getPageHome(HttpSession session, Model model) {
+        List<Funcionario> funcionarios = funcionarioRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+
+        String cargoUsuario = (String) session.getAttribute("cargo");
+
+
+        if (session == null || cargoUsuario == null) {
+            return "redirect:/backoffice/login";
+        }
+        model.addAttribute("cargoUsuario", cargoUsuario);
+        model.addAttribute("funcionarios", funcionarios);
+
+        
         return "backoffice/home";
     }
 
     @PostMapping("/login")
     public String fazLogin(FuncionarioDto funcionarioDto, HttpServletRequest request){
         Optional<Funcionario> funcionarOptional = funcionarioRepository.findByEmail(funcionarioDto.getEmail());
+
+
+        String senhaEncriptada = passwordEncoder.encode(funcionarioDto.getSenha());
 
         if(funcionarOptional.isPresent()){
             Funcionario funcionario = funcionarOptional.get();
@@ -51,6 +77,8 @@ public class BackOfficeController {
 
                 HttpSession session = request.getSession();
                 session.setAttribute("funcionarioLogado", funcionario);
+                session.setAttribute("cargo", funcionario.getCargo());
+
 
                 return "redirect:/backoffice/home";
             }
@@ -60,6 +88,51 @@ public class BackOfficeController {
             }
         }
         return "redirect:/login?error";
+    }
+
+    @GetMapping("/cadastrar")
+    public String getCadastrar(Model model, HttpSession session){
+
+        String cargoUsuario = (String) session.getAttribute("cargo");
+
+
+        // if (session == null || cargoUsuario == null) {
+        //     return "redirect:/backoffice/login";
+        // }
+
+        model.addAttribute("cargoUsuario", cargoUsuario);
+        FuncionarioDto funcionarioDto = new FuncionarioDto();
+        model.addAttribute("funcionarioDto", funcionarioDto);
+
+        return "backoffice/cadastro";
+
+        
+    }
+
+    @PostMapping("/cadastrar")
+    public String cadastrarFuncionario(@ModelAttribute("funcionarioDto") @Valid FuncionarioDto funcionarioDto, BindingResult bindingResult, Model model){
+
+        if(bindingResult.hasErrors()){
+            return "backoffice/cadastro";
+        }
+
+        if(funcionarioRepository.existsByEmail((funcionarioDto.getEmail()))){
+
+            bindingResult.rejectValue("email", "error.funcionarioDto", "Este email ja esta em uso");
+            return "backoffice/cadastro";
+        }
+
+        Funcionario funcionario = new Funcionario();
+        String senhaCriptada = this.passwordEncoder.encode(funcionarioDto.getSenha());
+
+        funcionario.setNome(funcionarioDto.getNome());
+        funcionario.setEmail(funcionarioDto.getEmail());
+        funcionario.setSenha(senhaCriptada);
+
+        funcionario.setCargo(funcionarioDto.getCargo());
+        funcionarioRepository.save(funcionario);
+
+        return "redirect:/backoffice/home";
     }
     
 }
