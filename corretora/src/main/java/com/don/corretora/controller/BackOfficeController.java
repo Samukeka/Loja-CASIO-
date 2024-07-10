@@ -1,5 +1,6 @@
 package com.don.corretora.controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.don.corretora.model.Funcionario;
 import com.don.corretora.model.FuncionarioDto;
@@ -79,15 +81,19 @@ public class BackOfficeController {
                 session.setAttribute("funcionarioLogado", funcionario);
                 session.setAttribute("cargo", funcionario.getCargo());
 
-
-                return "redirect:/backoffice/home";
+                if("ATIVO".equals(funcionario.getStatus())){
+                    return "redirect:/backoffice/home";
+                }
+                else{
+                    return "redirect:/backoffice/login?error";
+                }
             }
             else{
                 System.out.println("erro de login");
-                return "redirect:/login?error";
+                return "redirect:/backoffice/login?error";
             }
         }
-        return "redirect:/login?error";
+        return "redirect:/backoffice/login?error";
     }
 
     @GetMapping("/cadastrar")
@@ -96,9 +102,9 @@ public class BackOfficeController {
         String cargoUsuario = (String) session.getAttribute("cargo");
 
 
-        // if (session == null || cargoUsuario == null) {
-        //     return "redirect:/backoffice/login";
-        // }
+        if (session == null || cargoUsuario == null) {
+            return "redirect:/backoffice/login";
+        }
 
         model.addAttribute("cargoUsuario", cargoUsuario);
         FuncionarioDto funcionarioDto = new FuncionarioDto();
@@ -134,5 +140,90 @@ public class BackOfficeController {
 
         return "redirect:/backoffice/home";
     }
+
+    @GetMapping("/editar")
+    public String funcionarioInformacoes(Model model, @RequestParam Long id, HttpSession session){
+
+        String cargoUsuario = (String) session.getAttribute("cargo");
+
+
+        if (session == null || cargoUsuario == null) {
+            return "redirect:/backoffice/login";
+        }
+
+        model.addAttribute("cargoUsuario", cargoUsuario);
+
+        try{
+            Funcionario funcionario = funcionarioRepository.findById(id).get();
+            model.addAttribute("funcionario", funcionario);
+
+            FuncionarioDto funcionarioDto = new FuncionarioDto();
+            funcionarioDto.setNome(funcionario.getNome());
+            funcionarioDto.setEmail(funcionario.getEmail());
+            funcionarioDto.setSenha(funcionario.getSenha());
+            funcionarioDto.setCargo(funcionario.getCargo());
+
+            model.addAttribute("funcionarioDto",funcionarioDto);
+        }
+        catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
+            return "redirect:/home";
+        }
+        return "backoffice/edita";
+    }
+
+    @PostMapping("/editar")
+    public String editaFuncionario(Model model, Principal principal, @RequestParam Long id, @Valid @ModelAttribute FuncionarioDto funcionarioDto, BindingResult bindingResult, HttpSession session){
+
+        String cargoUsuario = (String) session.getAttribute("cargo");
+
+
+        if (session == null || cargoUsuario == null) {
+            return "redirect:/backoffice/login";
+        }
+
+        model.addAttribute("cargoUsuario", cargoUsuario);
+
+        // Verificar se o usuário autenticado está tentando editar seu próprio perfil
+        if (principal != null && principal.getName().equals(funcionarioDto.getEmail())) {
+            bindingResult.rejectValue("email", "error.funcionarioDto", "Você não pode editar seu próprio perfil");
+            return "backoffice/home";
+        }
+
+        try{
+            Funcionario funcionario = funcionarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Funcionario nao encontrado"));
+            model.addAttribute("funcionario", funcionario);
+
+            if(bindingResult.hasErrors()){
+                return "backoffice/edita";
+            }
+
+            funcionario.setNome(funcionarioDto.getNome());
+            funcionario.setEmail(funcionarioDto.getEmail());
+            funcionario.setCargo(funcionarioDto.getCargo());
+            funcionario.setStatus(funcionarioDto.getStatus());
+
+
+            String senhaEncriptada = this.passwordEncoder.encode(funcionarioDto.getSenha());
+            funcionario.setSenha(senhaEncriptada);
+
+            funcionarioRepository.save(funcionario);
+        }
+        catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
+        }
+        return "redirect:/backoffice/home";
+    }
+
+    @PostMapping("/alteraStatus")
+    public String alteraStatus(@RequestParam Long id, @ModelAttribute FuncionarioDto funcionarioDto){
+        
+        Funcionario funcionario = funcionarioRepository.findById(id).orElseThrow(() -> new RuntimeException("Funcionario nao encontrado"));
+         funcionario.setStatus("ATIVO".equals(funcionario.getStatus()) ? "INATIVO" : "ATIVO");
+    
+         funcionarioRepository.save(funcionario);
+
+         return "redirect:/backoffice/home";
+        }
     
 }
