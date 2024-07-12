@@ -13,6 +13,8 @@ public class FuncionarioDto {
     @NotEmpty(message = "O cargo não pode estar vazio")
     private String cargo;
 
+    private String status = "ATIVO";
+
     public String getEmail() {
         return email;
     }
@@ -43,5 +45,13 @@ public class FuncionarioDto {
 
     public void setCargo(String cargo) {
         this.cargo = cargo;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

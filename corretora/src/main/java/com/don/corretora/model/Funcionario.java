@@ -22,6 +22,9 @@ public class Funcionario {
     
     private String cargo;
 
+    private String status;
+
+
     public Long getId() {
         return id;
     }
@@ -61,5 +64,15 @@ public class Funcionario {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+   
     
 }
