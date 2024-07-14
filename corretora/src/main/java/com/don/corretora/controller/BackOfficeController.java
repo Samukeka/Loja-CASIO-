@@ -134,7 +134,7 @@ public class BackOfficeController {
         funcionario.setNome(funcionarioDto.getNome());
         funcionario.setEmail(funcionarioDto.getEmail());
         funcionario.setSenha(senhaCriptada);
-
+        funcionario.setStatus("ATIVO");
         funcionario.setCargo(funcionarioDto.getCargo());
         funcionarioRepository.save(funcionario);
 

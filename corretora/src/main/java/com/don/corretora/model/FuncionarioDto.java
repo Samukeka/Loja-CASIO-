@@ -13,7 +13,7 @@ public class FuncionarioDto {
     @NotEmpty(message = "O cargo não pode estar vazio")
     private String cargo;
 
-    private String status = "ATIVO";
+    private String status;
 
     public String getEmail() {
         return email;
