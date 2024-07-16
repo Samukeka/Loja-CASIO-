@@ -1,4 +1,4 @@
-package com.don.corretora.controller;
+package com.don.corretora.model;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -39,6 +39,8 @@ public class Produto {
     private int quantidade_estoque;
 
     private String descricao;
+
+    private String status;
 
     @ElementCollection
     @CollectionTable(name = "imagens_produto", joinColumns = @JoinColumn(name = "id_produto"))
@@ -143,6 +145,14 @@ public class Produto {
 
     public void setQuantidade_estoque(int quantidade_estoque) {
         this.quantidade_estoque = quantidade_estoque;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 
