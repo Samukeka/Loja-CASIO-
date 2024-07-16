@@ -113,19 +113,19 @@
         <div class="pagination">
             <ul class="pagination">
                 <li class="page-item" th:if="${currentPage > 0}">
-                    <a class="page-link" th:href="@{/produtos(page=0)}">Primeira</a>
+                    <a class="page-link" th:href="@{/backoffice/produtos(page=0)}">Primeira</a>
                 </li>
                 <li class="page-item" th:if="${currentPage > 0}">
-                    <a class="page-link" th:href="@{/produtos(page=${currentPage - 1})}">Anterior</a>
+                    <a class="page-link" th:href="@{/backoffice/produtos(page=${currentPage - 1})}">Anterior</a>
                 </li>
                 <li class="page-item" th:each="pageNo : ${#numbers.sequence(0, totalPages - 1)}" th:class="${pageNo} == ${currentPage} ? 'active'">
-                    <a class="page-link" th:href="@{/produtos(page=${pageNo})}" th:text="${pageNo + 1}"></a>
+                    <a class="page-link" th:href="@{/backoffice/produtos(page=${pageNo})}" th:text="${pageNo + 1}"></a>
                 </li>
                 <li class="page-item" th:if="${currentPage <totalPages - 1}">
-                    <a class="page-link" th:href="@{/produtos(page=${currentPage + 1})}">Próxima</a>
+                    <a class="page-link" th:href="@{/backoffice/produtos(page=${currentPage + 1})}">Próxima</a>
                 </li>
-                <li class="page-item" th:if="${currentPage < totalPages - 1}">
-                    <a class="page-link" th:href="@{/produtos(page=${totalPages - 1})}">Última</a>
+                <li class="page-item" th:if="${currentPage <totalPages - 1}">
+                    <a class="page-link" th:href="@{/backoffice/produtos(page=${totalPages - 1})}">Última</a>
                 </li>
             </ul>
         </div>
