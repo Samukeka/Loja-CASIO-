@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Produtos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1 class="text-center my-4">Produtos</h1>
+                </div>
+                <div class="col-auto" style="margin-top: 40px">
+                    <a class="btn btn-primary" href="/">Voltar</a>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <input id="buscarProduto" type="text" class="form-control" placeholder="Buscar produto" aria-label="Recipient's product" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" onclick="filtrarProdutos()">Confirmar</button>
+                </div>
+            </div>
+
+
+            <th:block th:if="${cargoUsuario != null && cargoUsuario == 'Administrador'}">
+                <a class="btn btn-primary" href="/backoffice/criaproduto" style="font-size: 30px">+</a>
+            </th:block>
+
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Preço</th>
+                        <th>Marca</th>
+                        <th>Série</th>
+                        <th>Coleção</th>
+                        <th>Cor</th>
+                        <th>Estilo</th>
+                        <th>Quantidade no Estoque</th>
+                        <th>Status</th>
+
+                    </tr>
+                </thead>
+                <tbody id="tabelaProdutos">
+                    <tr th:each="produto : ${produtos}" id="produtoRow">
+                        <td th:text="${produto.id}"></td>
+                        <td th:text="${produto.nome}"></td>
+                        <td th:text="${produto.preco}"></td>
+                        <td th:text="${produto.marca}"></td>
+                        <td th:text="${produto.serie}"></td>
+                        <td th:text="${produto.colecao}"></td>
+                        <td th:text="${produto.cor}"></td>
+                        <td th:text="${produto.estilo}"></td>
+                        <td th:text="${produto.quantidade_estoque}"></td>
+                        
+                        <td th:text="${produto.status}"></td>
+                        <td style="white-space:nowrap" >
+                            <a th:if="${cargoUsuario == 'Administrador'}" class="btn btn-primary btn-sm" th:href="@{editarproduto(id=${produto.id})}">Editar</a>
+                            <a th:if="${cargoUsuario == 'Estoquista'}" class="btn btn-primary btn-sm" th:href="@{editarproduto(id=${produto.id})}">Editar</a>
+
+                            <form th:action="@{/backoffice/atualizarStatus}" method="post">
+                                <input type="hidden" th:name="id" th:value="${produto.id}"/>
+                                <th:block th:if="${cargoUsuario != null && cargoUsuario == 'Administrador'}">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja alterar o status deste usuário?')">Alterar Status</button>
+                                </th:block>
+                            </form>
+                            <th:block th:if="${cargoUsuario != null && cargoUsuario == 'Administrador'}">
+                                <a th:href="@{/backoffice/view/{id}(id=${produto.id})}" class="btn btn-primary btn-sm">Visualizar</a>
+                            </th:block>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script>
+            // função para filtrar produtos
+            function filtrarProdutos() {
+                // pega o valor digitado no campo de busca e converte para minúsculas
+                var filtro = document.getElementById("buscarProduto").value.toLowerCase();
+                // obtem todas as linhas da tabela
+                var linhas = document.querySelectorAll("#tabelaProdutos tr");
+
+                // oculta todos os produtos
+                linhas.forEach(function (linha, index) {
+                    linha.style.display = "none";
+                });
+
+                // itera sobre as linhas e exibe ou oculta conforme o filtro
+                linhas.forEach(function (linha, index) {
+                    // ignora a primeira linha (cabeçalho da tabela)
+                    if (index >= 0) {
+                        // pega o texto da segunda coluna (índice 1) e converte para minúsculas
+                        var nomeProduto = linha.children[1].textContent.toLowerCase();
+                        // verifica se o texto da segunda coluna inclui o filtro
+                        if (nomeProduto.includes(filtro)) {
+                            linha.style.display = ""; // exibe a linha se o nome corresponder ao filtro
+                        }
+                    }
+                });
+            }
+        </script>
+        <div class="pagination">
+            <ul class="pagination">
+                <li class="page-item" th:if="${currentPage > 0}">
+                    <a class="page-link" th:href="@{/produtos(page=0)}">Primeira</a>
+                </li>
+                <li class="page-item" th:if="${currentPage > 0}">
+                    <a class="page-link" th:href="@{/produtos(page=${currentPage - 1})}">Anterior</a>
+                </li>
+                <li class="page-item" th:each="pageNo : ${#numbers.sequence(0, totalPages - 1)}" th:class="${pageNo} == ${currentPage} ? 'active'">
+                    <a class="page-link" th:href="@{/produtos(page=${pageNo})}" th:text="${pageNo + 1}"></a>
+                </li>
+                <li class="page-item" th:if="${currentPage <totalPages - 1}">
+                    <a class="page-link" th:href="@{/produtos(page=${currentPage + 1})}">Próxima</a>
+                </li>
+                <li class="page-item" th:if="${currentPage < totalPages - 1}">
+                    <a class="page-link" th:href="@{/produtos(page=${totalPages - 1})}">Última</a>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>

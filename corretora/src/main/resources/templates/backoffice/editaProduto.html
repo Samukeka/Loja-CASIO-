@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar Produto</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto rounded border p-4 m-4">
+                <h2 class="text-center mb-5">Editar Produto</h2>
+
+                <form  enctype="multipart/form-data" method="post" th:action="@{/backoffice/editarproduto}" th:object="${produtoDto}">
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">ID</label>
+                        <div class="col-sm-8">
+                            <input readonly class="form-control" th:field="${produtoDto.id}">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Nome</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" th:field="${produtoDto.nome}">
+                            <p th:if="${#fields.hasErrors('nome')}" th:errors="${produtoDto.nome}" class="text-danger"></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Preço</label>
+                        <div class="col-sm-8">
+                            <input type="number" step="0.01" class="form-control" th:field="${produtoDto.preco}">
+                            <p th:if="${#fields.hasErrors('preco')}" th:errors="${produtoDto.preco}" class="text-danger"></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Marca</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" th:field="${produtoDto.marca}">
+                            <p th:if="${#fields.hasErrors('marca')}" th:errors="${produtoDto.marca}" class="text-danger"></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Série</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" th:field="${produtoDto.serie}">
+                            <p th:if="${#fields.hasErrors('serie')}" th:errors="${produtoDto.serie}" class="text-danger"></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Cor</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" th:field="${produtoDto.cor}">
+                            <p th:if="${#fields.hasErrors('cor')}" th:errors="${produtoDto.cor}" class="text-danger"></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Estilo</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" th:field="${produtoDto.estilo}">
+                            <p th:if="${#fields.hasErrors('estilo')}" th:errors="${produtoDto.estilo}" class="text-danger"></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Coleção</label>
+                        <div class="col-sm-8">
+                            <input class="form-control" th:field="${produtoDto.colecao}">
+                            <p th:if="${#fields.hasErrors('colecao')}" th:errors="${produtoDto.colecao}" class="text-danger"></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Quantidade Estoque</label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" th:field="${produtoDto.quantidade_estoque}" min="1">
+                            <p th:if="${#fields.hasErrors('quantidade_estoque')}" th:errors="${produtoDto.quantidade_estoque}" class="text-danger"></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Descrição</label>
+                        <div class="col-sm-8">
+                            <textarea class="form-control" th:field="${produtoDto.descricao}"></textarea>
+                            <p th:if="${#fields.hasErrors('descricao')}" th:errors="${produtoDto.descricao}" class="text-danger"></p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label">Imagem</label>
+                        <div class="col-sm-8">
+                            <input type="file" class="form-control" th:field="${produtoDto.imagens}" multiple>
+                            <p th:if="${#fields.hasErrors('imagens')}" th:errors="${produtoDto.imagens}" class="text-danger">É necessário selecionar pelo menos uma imagem.</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Remova Imagem</label>
+                        <div th:each="imagem : ${imagens}" class="me-2 mb-2" style="display: inline-block;">
+                            <img th:src="@{'/imagens_dos_produtos/' + ${imagem}}" class="img-thumbnail" style="max-width: 100px;">
+                            <input type="checkbox" th:value="${imagem}" th:field="${produtoDto.imagensRemovidas}" class="form-check-input">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Escolha Imagem Padrão</label>
+                        <div th:each="imagem, iterStat : ${imagens}" class="me-2 mb-2" style="display: inline-block;">
+                            <img th:src="@{'/imagens_dos_produtos/' + ${imagem}}" class="img-thumbnail" style="max-width: 100px;">
+                            <input type="radio" th:value="${imagem}" th:field="${produtoDto.imagemPadrao}" th:checked="${imagem == produtoDto.imagemPadrao}" class="form-check-input">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="offset-sm-4 col-sm-4 d-grid">
+                            <button type="submit" class="btn btn-primary">Confirmar</button>
+                        </div>
+                        <div class="col-sm-4 d-grid">
+                            <a class="btn btn-outline-secondary" href="/backoffice/produtos" role="button">Cancelar</a>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
