@@ -84,12 +84,7 @@ public class Pedido {
     public void setEndereco_de_entrega(Endereco endereco_de_entrega) {
         this.endereco_de_entrega = endereco_de_entrega;
     }
-    public FormasDePagamento getFormaDePagamento() {
-        return formaDePagamento;
-    }
-    public void setFormaDePagamento(FormasDePagamento formaDePagamento) {
-        this.formaDePagamento = formaDePagamento;
-    }
+    
     public LocalDate getData_do_pedido() {
         return data_do_pedido;
     }
@@ -101,6 +96,12 @@ public class Pedido {
     }
     public void setFrete(BigDecimal frete) {
         this.frete = frete;
+    }
+    public FormaDePagamento getFormaDePagamento() {
+        return formaDePagamento;
+    }
+    public void setFormaDePagamento(FormaDePagamento formaDePagamento) {
+        this.formaDePagamento = formaDePagamento;
     }
 
     
