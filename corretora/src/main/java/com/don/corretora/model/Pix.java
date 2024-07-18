@@ -1,16 +1,16 @@
 package com.don.corretora.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 @Entity
-public class Pix implements FormaDePagamento {
+public class Pix extends FormaDePagamento { 
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String chavePix;
 
-    @Override
-    public void pagar(){
-
-    }
+    
 
     public String getChavePix() {
         return chavePix;

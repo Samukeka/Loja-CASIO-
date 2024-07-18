@@ -1,20 +1,18 @@
 package com.don.corretora.model;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 @Entity
-public class CartaoDeCredito implements FormaDePagamento {
+public class CartaoDeCredito extends FormaDePagamento{
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String numeroCartao;
     private String codigoVerificador;
     private String nomeCompleto;
     private String dataVencimento;
     private int qunatidadeParcelas;
-
-    @Override
-    public void pagar(){
-
-    }
 
     public String getNumeroCartao() {
         return numeroCartao;

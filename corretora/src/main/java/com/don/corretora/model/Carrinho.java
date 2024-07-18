@@ -10,7 +10,7 @@ public class Carrinho {
     private List<ItemPedido> itens;
     private BigDecimal total;
     private BigDecimal frete;
-    private FormasDePagamento formadepagamento;
+    private FormaDePagamento formadepagamento;
     private String cupomDesconto;
 
     
@@ -32,10 +32,10 @@ public class Carrinho {
     public void setFrete(BigDecimal frete) {
         this.frete = frete;
     }
-    public FormasDePagamento getFormadepagamento() {
+    public FormaDePagamento getFormadepagamento() {
         return formadepagamento;
     }
-    public void setFormadepagamento(FormasDePagamento formadepagamento) {
+    public void setFormadepagamento(FormaDePagamento formadepagamento) {
         this.formadepagamento = formadepagamento;
     }
     public String getCupomDesconto() {
