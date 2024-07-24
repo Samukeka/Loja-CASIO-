@@ -32,12 +32,9 @@ import com.don.corretora.model.Funcionario;
 import com.don.corretora.model.FuncionarioDto;
 import com.don.corretora.model.Produto;
 import com.don.corretora.model.ProdutoDto;
-import com.don.corretora.model.Usuario;
 import com.don.corretora.repository.FuncionarioRepository;
 import com.don.corretora.repository.ProdutoRepository;
-import com.don.corretora.repository.UsuarioRepository;
 
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -398,7 +395,6 @@ public String editarProduto(@ModelAttribute("produtoDto") @Valid ProdutoDto prod
         produto.setEstilo(produtoDto.getEstilo());
         produto.setQuantidade_estoque(produtoDto.getQuantidade_estoque());
         produto.setDescricao(produtoDto.getDescricao());
-        produto.setStatus(produtoDto.getStatus());
 
         if (produto.getImagens().size() == 1 && produtoDto.getImagensRemovidas() != null
                 && !produtoDto.getImagensRemovidas().isEmpty()) {

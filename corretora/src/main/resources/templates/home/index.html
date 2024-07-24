@@ -2,20 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/home.css">
+    <meta name="viewport" content="width=device=width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../css/home.css">
 
     <title>Home</title>
+
+    
 </head>
 <body>
-    <header>
+    <header class="cabecalho">
+        <a href="/"><img src="images/logo.svg" class="logo" alt="Logo"></a>   
+    
+        <div class="containerInfos">
+            <a alt="Coleções">COLEÇÕES</a>
+            <a alt="Novidades">NOVIDADES</a>
+            <a alt="Modelos">MODELOS</a>
+        </div>
 
-        <h1>DON</h1>
-        <a href="/cadastrar">Cadastrar</a>
-        <a href="/login">Login</a>
+        <div class="containerSearch">
+            <input class="inputSearch" alt="campo de pesquisa" type="text" placeholder="Pesquisar...">
+        </div>
 
+        <div class="containerIcons">
+        <a href="/carrinho"><img src="images/cart.svg" class="icons" alt="home"></a>
+        <a id="profile" href="/perfil"><img src="images/profile.svg" class="icons" alt="Perfil"></a>
+        </div>
         
     </header>
+    <main>
 
-    <a th:text="${nomeUsuario}"></a>
+<h2>Relógios</h2>
+
+    </main>
+
     </html>

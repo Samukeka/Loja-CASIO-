@@ -1,6 +1,5 @@
 package com.don.corretora.model;
 
-import org.apache.commons.validator.Form;
 
 import jakarta.persistence.*;
 

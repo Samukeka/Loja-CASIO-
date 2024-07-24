@@ -1,31 +1,59 @@
+body {
+  background-color: #8d8d8d;
+}
 
-    body{
-        margin: 0;
-        font-family: Verdana;
-        line-height: 1.6;
-    }
+.cabecalho {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20px;
+  justify-content: space-between;
+}
 
-    main{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+.containerIcons {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+}
 
-    header{
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        
-    }
+.cabecalho > .containerInfos > a {
+  font-size: 20px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: white;
+  font-weight: 200;
+}
 
-    header, main {
-        padding: 20px;
-        text-align: center;
-    }
+.cabecalho > .containerIcons > #profile {
+  margin-left: 50px;
+}
 
-@media (min-width: 600px) {
-    main {
-        flex-direction: row;
-        justify-content: space-around;
-    }
+.containerInfos {
+  display: contents;
+}
+
+.icons {
+  width: 30px;
+  height: 30px;
+}
+.inputSearch {
+  background-image: url(../images/search.svg);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-origin: content-box;
+  border: none;
+  background-color: white;
+  height: 25px;
+  color: black;
+  border-radius: 15px;
+  text-align: center;
+  padding-left: 10px;
+}
+.inputSearch::placeholder {
+  color: black;
+}
+
+.containerTotal {
+  display: flex;
+  align-items: center;
 }
