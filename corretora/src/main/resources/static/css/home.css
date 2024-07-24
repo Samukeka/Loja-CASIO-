@@ -4,38 +4,44 @@ body {
 
 .cabecalho {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  margin: 20px;
+  padding: 10px 20px;
   justify-content: space-between;
 }
 
-.containerIcons {
-  display: flex;
-  justify-content: space-around;
-  flex-direction: row;
-  align-items: center;
-}
-
-.cabecalho > .containerInfos > a {
-  font-size: 20px;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  color: white;
-  font-weight: 200;
-}
-
-.cabecalho > .containerIcons > #profile {
-  margin-left: 50px;
+.logo {
+  flex: 1;
 }
 
 .containerInfos {
-  display: contents;
+  display: flex;
+  flex: 2;
+  justify-content: center;
+  gap: 100px;
 }
 
 .icons {
   width: 30px;
   height: 30px;
 }
+
+.container_buttons_search {
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.icons {
+  padding: 10px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
 .inputSearch {
   background-image: url(../images/search.svg);
   background-repeat: no-repeat;
@@ -48,12 +54,30 @@ body {
   border-radius: 15px;
   text-align: center;
   padding-left: 10px;
+  width: 200px;
 }
 .inputSearch::placeholder {
   color: black;
 }
 
-.containerTotal {
+.cabecalho > .containerInfos > a {
+  font-size: 20px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: white;
+  font-weight: 200;
+}
+
+.container_produtos {
   display: flex;
-  align-items: center;
+  flex: 1;
+  background-color: aqua;
+  margin: 30px;
+}
+
+.card {
+  display: flex;
+  background-color: rgb(62, 62, 62);
+  height: 350px;
+  width: 250px;
+  justify-content: center;
 }
