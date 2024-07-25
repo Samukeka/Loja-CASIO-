@@ -33,8 +33,12 @@
 
 <main>
     <section class="container_produtos">
-        <div class="card">
-            <h2>Produto</h2>
+        <div th:each="produto : ${produtos}" class="card">
+            <div >
+                <img th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}" style="max-width: 200px; max-height: 200px;" />
+
+
+            </div>
 
         </div>
         
