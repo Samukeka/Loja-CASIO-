@@ -40,25 +40,34 @@
                         style="max-width: 200px; max-height: 200px;" />
                 </div>
 
+                <div>
+                    <p class="nome_text" th:text="${produto.nome}"></p>
+
+                </div>
+
 
                 <div class="info_card">
-                    <div class="name_card">
-                        <h3 class="nome_text" th:text="${produto.nome}"></h3>
+                    <div class="marca_text">
+                        <p style="font-size: 15px; text-align: center;" th:text="${produto.marca}"></p>
                     </div>
-                    <div class="marca">
-                        <p class="text_marca" th:text="${produto.marca}"></p>
-                    </div>
-                    <div class="serie">
-                        <p class="text_serie" th:text="${produto.serie}"></p>
-                    </div>
-                    <div class="infos">
-                        <p class="text_price">R$
-                        <p class="text_price" th:text="${produto.preco}"></p>
-                        </p>
+                    <div style="display: flex; flex-direction: column;">
+                        <div class="serie">
+                            <p style="font-size: 13px; text-align: center;" th:text="${produto.serie}"></p>
+                        </div>
+                        <div class="serie_text">
+                            <p style="font-size: 13px; text-align: center;">R$
+                            <p style=" font-size: 13px; text-align: center;" th:text="${produto.preco}"></p>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
             </div>
+        </section>
+
+
+        <section class="segunda_linha">
+
         </section>
     </main>
 
