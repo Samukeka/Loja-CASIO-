@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device=width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device=width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/home.css">
 
     <title>Home</title>
 
-    
+
 </head>
+
 <body>
     <header class="cabecalho">
         <div class="logo">
-            <a href="/"><img src="images/logo.svg"  alt="Logo"></a>   
+            <a href="/"><img src="images/logo.svg" alt="Logo"></a>
         </div>
-    
+
         <div class="containerInfos">
             <a alt="Coleções">COLEÇÕES</a>
             <a alt="Novidades">NOVIDADES</a>
@@ -23,26 +25,41 @@
 
         <div class="container_buttons_search">
             <input class="inputSearch" alt="campo de pesquisa" type="text" placeholder="Pesquisar...">
-    <div class="buttons">
-        <a href="/carrinho"><img src="images/cart.svg" class="icons" alt="home"></a>
-        <a id="profile" href="/perfil"><img src="images/profile.svg" class="icons" alt="Perfil"></a>
-    </div>
-</div>
-</header>
-
-
-<main>
-    <section class="container_produtos">
-        <div th:each="produto : ${produtos}" class="card">
-            <div >
-                <img th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}" style="max-width: 200px; max-height: 200px;" />
-
-
+            <div class="buttons">
+                <a href="/carrinho"><img src="images/cart.svg" class="icons" alt="home"></a>
+                <a id="profile" href="/perfil"><img src="images/profile.svg" class="icons" alt="Perfil"></a>
             </div>
-
         </div>
-        
+    </header>
 
-    </section>
-</main>
+    <main>
+        <section class="container_produtos">
+            <div th:each="produto : ${produtos}" class="card">
+                <div class="imagem_card">
+                    <img th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}"
+                        style="max-width: 200px; max-height: 200px;" />
+                </div>
+
+
+                <div class="info_card">
+                    <div class="name_card">
+                        <h3 class="nome_text" th:text="${produto.nome}"></h3>
+                    </div>
+                    <div class="marca">
+                        <p class="text_marca" th:text="${produto.marca}"></p>
+                    </div>
+                    <div class="serie">
+                        <p class="text_serie" th:text="${produto.serie}"></p>
+                    </div>
+                    <div class="infos">
+                        <p class="text_price">R$
+                        <p class="text_price" th:text="${produto.preco}"></p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </section>
+    </main>
+
 </html>
