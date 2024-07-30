@@ -1,5 +1,5 @@
 body {
-  background-color: #8d8d8d;
+  background-color: #E94B27;
 }
 
 .cabecalho {
@@ -63,9 +63,9 @@ body {
 
 .cabecalho>.containerInfos>a {
   font-size: 20px;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
   color: white;
-  font-weight: 200;
 }
 
 .container_produtos {
@@ -73,12 +73,12 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin: 50px;
+  /* margin: 50px; */
 }
 
 .card {
   display: flex;
-  background-color: rgb(85, 85, 85);
+  background-color: rgb(2, 0, 44);
   height: 360px;
   width: 220px;
   justify-content: center;
@@ -143,7 +143,7 @@ body {
 .marca_text {
   display: flex;
   width: 80px;
-  background-color: #0a0808;
+  background-color: #2E2525;
   margin: 10px;
   padding: 5px;
   border-radius: 5px;
@@ -159,7 +159,7 @@ p {
 
 .serie_text {
   display: flex;
-  background-color: #0a0808;
+  background-color: #2E2525;
   margin: 10px;
   padding: 5px;
   border-radius: 5px;
@@ -172,7 +172,7 @@ p {
 
 .serie {
   display: flex;
-  background-color: #0a0808;
+  background-color: #2E2525;
   margin: 10px;
   padding: 5px;
   border-radius: 5px;
@@ -180,4 +180,33 @@ p {
   height: 25px;
   width: 100px;
   align-items: center;
+}
+
+
+.segunda_linha {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  margin: 50px;
+  flex-direction: column;
+}
+
+.anuncio {
+  margin: 0;
+  color: rgb(255, 255, 255);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 300;
+}
+
+.linha_produtos {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  /* align-items: center;*/
+}
+
+.banners {
+  max-width: 800px;
+  margin-right: 30px;
+
 }
