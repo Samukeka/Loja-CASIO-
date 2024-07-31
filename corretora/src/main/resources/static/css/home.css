@@ -85,13 +85,14 @@ main{
 
 .card {
   display: flex;
-  background-color: rgb(2, 0, 44);
+  background-color: rgb(20, 20, 20);
   height: 360px;
   width: 220px;
   justify-content: center;
   margin-right: 55px;
   flex-direction: column;
   margin-top: 30px;
+  border-radius: 10px;
 }
 
 .imagem_card {
@@ -129,7 +130,7 @@ main{
 
 .text {
   margin: 0;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 100;
   font-size: 20px;
@@ -150,7 +151,7 @@ main{
 .marca_text {
   display: flex;
   width: 80px;
-  background-color: #2E2525;
+  background-color: #515151;
   margin: 10px;
   padding: 5px;
   border-radius: 5px;
@@ -159,14 +160,14 @@ main{
 }
 
 p {
-  color: white;
+  color: rgb(255, 255, 255);
   font-weight: 500;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .serie_text {
   display: flex;
-  background-color: #2E2525;
+  background-color: #515151;
   margin: 10px;
   padding: 5px;
   border-radius: 5px;
@@ -179,7 +180,7 @@ p {
 
 .serie {
   display: flex;
-  background-color: #2E2525;
+  background-color: #515151;
   margin: 10px;
   padding: 5px;
   border-radius: 5px;
