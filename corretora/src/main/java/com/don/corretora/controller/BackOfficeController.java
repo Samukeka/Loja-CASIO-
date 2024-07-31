@@ -324,6 +324,11 @@ public class BackOfficeController {
         produto.setStatus("ATIVO");
         produto.setImagens(imagensSalvas);
         produto.setImagemPadrao(imagemPadrao);
+        produto.setNovidade(true);
+        produto.setMaisVendido(false);
+        produto.setDesconto(false);
+        produto.setDestaque(false);
+
         produtoRepository.save(produto);
 
         return "redirect:/backoffice/home";
@@ -469,10 +474,26 @@ public String editarProduto(@ModelAttribute("produtoDto") @Valid ProdutoDto prod
 
 
     @PostMapping("/atualizarStatus")
-    public String atualizaStatus(@RequestParam Long id, @ModelAttribute ProdutoDto produtoDto) {
+    public String atualizaStatus(@RequestParam Long id) {
         Produto produto = produtoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("produto não encontrado"));
         produto.setStatus("ATIVO".equals(produto.getStatus()) ? "INATIVO" : "ATIVO");
+        produtoRepository.save(produto);
+        return "redirect:/backoffice/produtos";
+    }
+
+    @PostMapping("/novidade")
+    public String definirNovidade(@RequestParam Long id) {
+        Produto produto = produtoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("produto não encontrado"));
+                if(produto.getNovidade() == true){
+                    produto.setNovidade(false);
+
+
+                }else if(produto.getNovidade() == false){
+                    produto.setNovidade(true);
+                }
+
         produtoRepository.save(produto);
         return "redirect:/backoffice/produtos";
     }

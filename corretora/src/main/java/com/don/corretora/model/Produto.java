@@ -50,6 +50,23 @@ public class Produto {
     @Column(name = "imagem_principal")
     private String imagemPadrao;
 
+    private Boolean destaque;
+
+    private Boolean maisVendido;
+    
+    private Boolean desconto;
+
+    private Boolean novidade;
+
+
+
+    public Boolean getNovidade() {
+        return novidade;
+    }
+
+    public void setNovidade(Boolean novidade) {
+        this.novidade = novidade;
+    }
 
     public String getEstilo() {
         return estilo;
@@ -153,6 +170,30 @@ public class Produto {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Boolean getDestaque() {
+        return destaque;
+    }
+
+    public void setDestaque(Boolean destaque) {
+        this.destaque = destaque;
+    }
+
+    public Boolean getMaisVendido() {
+        return maisVendido;
+    }
+
+    public void setMaisVendido(Boolean maisVendido) {
+        this.maisVendido = maisVendido;
+    }
+
+    public Boolean getDesconto() {
+        return desconto;
+    }
+
+    public void setDesconto(Boolean desconto) {
+        this.desconto = desconto;
     }
 
 

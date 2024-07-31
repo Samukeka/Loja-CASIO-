@@ -38,7 +38,10 @@ public class HomeController {
             model.addAttribute("usuarioLogado", false);
         }
         List<Produto> produtos =  produtoRepository.findAll();
-        model.addAttribute("produtos", produtos);
+        model.addAttribute("destaques", produtoRepository.findByDestaqueTrue());
+        model.addAttribute("novidades", produtoRepository.findByNovidadeTrue());
+        model.addAttribute("descontos", produtoRepository.findByDescontoTrue());
+        model.addAttribute("maisVendidos", produtoRepository.findByMaisVendidoTrue());        model.addAttribute("produtos", produtos);
 
 
         return "home/index";
