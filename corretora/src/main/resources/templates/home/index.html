@@ -33,23 +33,16 @@
     </header>
 
     <main>
-
         <section class="container_produtos">
 
             <div th:if="${produto.status != 'INATIVO'}" th:each="produto : ${produtos}" class="card">
-
-
                 <div class="imagem_card">
                     <img th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}"
                         style="max-width: 200px; max-height: 200px;" />
                 </div>
-
                 <div>
                     <p class="nome_text" th:text="${produto.nome}"></p>
-
                 </div>
-
-
                 <div class="info_card">
                     <div class="marca_text">
                         <p style="font-size: 15px; text-align: center;" th:text="${produto.marca}"></p>
@@ -66,7 +59,6 @@
                     </div>
                 </div>
             </div>
-            </div>
         </section>
 
 
@@ -74,14 +66,9 @@
             <h2 class="anuncio">COLLABS</h2>
             <h2 class="anuncio" style="position: absolute; padding-left: 830px;">NOVIDADES</h2>
 
-
             <div class="linha_produtos">
                 <img class="banners" src="banners/babyg.avif" />
-
                 <div style="display: flex;">
-
-
-
                     <div th:if="${produto.status != 'INATIVO' && produto.novidade}" th:each="produto : ${produtos}"
                         class="card" style="margin-top: 0;">
                         <div class="imagem_card">
@@ -110,15 +97,16 @@
                 </div>
 
             </div>
-            <div class="linha_banners">
-                <img class="banners_juntos" src="banners/itzy.avif" />
-                <img class="banners_juntos" src="banners/it.avif" />
-            </div>
+
         </section>
+        <div class="linha_banners">
+            <img class="banners_juntos" src="banners/itzy.avif" />
+            <img class="banners_juntos" src="banners/it.avif" />
+        </div>
 
         <section class="terceira_linha">
             <h2 class="anuncio">COLLABS</h2>
-            <h2 class="anuncio" style="position: absolute; padding-left: 830px;">DESCONTO</h2>
+            <h2 class="anuncio" style="position: absolute; padding-left: 830px;">EM PROMOÇÃO</h2>
 
 
             <div class="linha_produtos">
