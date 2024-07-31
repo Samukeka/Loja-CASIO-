@@ -193,9 +193,8 @@ p {
 .segunda_linha {
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: center; */
   flex-direction: column;
-  margin-top: 50px;
+  margin: 50px;
 }
 
 .anuncio {
