@@ -36,28 +36,30 @@
         <section class="container_produtos">
 
             <div th:if="${produto.status != 'INATIVO'}" th:each="produto : ${produtos}" class="card">
-                <div class="imagem_card">
-                    <img th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}"
-                        style="max-width: 200px; max-height: 200px;" />
-                </div>
-                <div>
-                    <p class="nome_text" th:text="${produto.nome}"></p>
-                </div>
-                <div class="info_card">
-                    <div class="marca_text">
-                        <p style="font-size: 15px; text-align: center;" th:text="${produto.marca}"></p>
+                <a th:href="@{/produtos/view/{id}(id=${produto.id})}" style="text-decoration: none;">
+                    <div class="imagem_card">
+                        <img th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}"
+                            style="max-width: 200px; max-height: 200px;" />
                     </div>
-                    <div style="display: flex; flex-direction: column;">
-                        <div class="serie">
-                            <p style="font-size: 13px; text-align: center;" th:text="${produto.serie}"></p>
+                    <div>
+                        <p class="nome_text" th:text="${produto.nome}"></p>
+                    </div>
+                    <div class="info_card">
+                        <div class="marca_text">
+                            <p style="font-size: 15px; text-align: center;" th:text="${produto.marca}"></p>
                         </div>
-                        <div class="serie_text">
-                            <p style="font-size: 13px; text-align: center;">R$
-                            <p style=" font-size: 13px; text-align: center;" th:text="${produto.preco}"></p>
-                            </p>
+                        <div style="display: flex; flex-direction: column;">
+                            <div class="serie">
+                                <p style="font-size: 13px; text-align: center;" th:text="${produto.serie}"></p>
+                            </div>
+                            <div class="serie_text">
+                                <p style="font-size: 13px; text-align: center;">R$
+                                <p style=" font-size: 13px; text-align: center;" th:text="${produto.preco}"></p>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </section>
 
@@ -71,28 +73,31 @@
                 <div style="display: flex;">
                     <div th:if="${produto.status != 'INATIVO' && produto.novidade}" th:each="produto : ${produtos}"
                         class="card" style="margin-top: 0;">
-                        <div class="imagem_card">
-                            <img th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}"
-                                style="max-width: 200px; max-height: 200px;" />
-                        </div>
-                        <div>
-                            <p class="nome_text" th:text="${produto.nome}"></p>
-                        </div>
-                        <div class="info_card">
-                            <div class="marca_text">
-                                <p style="font-size: 15px; text-align: center;" th:text="${produto.marca}"></p>
+                        <a th:href="@{/produtos/view/{id}(id=${produto.id})}" style="text-decoration: none;">
+
+                            <div class="imagem_card">
+                                <img th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}"
+                                    style="max-width: 200px; max-height: 200px;" />
                             </div>
-                            <div style="display: flex; flex-direction: column;">
-                                <div class="serie">
-                                    <p style="font-size: 13px; text-align: center;" th:text="${produto.serie}"></p>
+                            <div>
+                                <p class="nome_text" th:text="${produto.nome}"></p>
+                            </div>
+                            <div class="info_card">
+                                <div class="marca_text">
+                                    <p style="font-size: 15px; text-align: center;" th:text="${produto.marca}"></p>
                                 </div>
-                                <div class="serie_text">
-                                    <p style="font-size: 13px; text-align: center;">R$
-                                    <p style=" font-size: 13px; text-align: center;" th:text="${produto.preco}"></p>
-                                    </p>
+                                <div style="display: flex; flex-direction: column;">
+                                    <div class="serie">
+                                        <p style="font-size: 13px; text-align: center;" th:text="${produto.serie}"></p>
+                                    </div>
+                                    <div class="serie_text">
+                                        <p style="font-size: 13px; text-align: center;">R$
+                                        <p style=" font-size: 13px; text-align: center;" th:text="${produto.preco}"></p>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
 
@@ -118,28 +123,31 @@
 
                     <div th:if="${produto.status != 'INATIVO' && produto.desconto}" th:each="produto : ${produtos}"
                         class="card" style="margin-top: 0;">
-                        <div class="imagem_card">
-                            <img th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}"
-                                style="max-width: 200px; max-height: 200px;" />
-                        </div>
-                        <div>
-                            <p class="nome_text" th:text="${produto.nome}"></p>
-                        </div>
-                        <div class="info_card">
-                            <div class="marca_text">
-                                <p style="font-size: 15px; text-align: center;" th:text="${produto.marca}"></p>
+                        <a th:href="@{/produtos/view/{id}(id=${produto.id})}" style="text-decoration: none;">
+
+                            <div class="imagem_card">
+                                <img th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}"
+                                    style="max-width: 200px; max-height: 200px;" />
                             </div>
-                            <div style="display: flex; flex-direction: column;">
-                                <div class="serie">
-                                    <p style="font-size: 13px; text-align: center;" th:text="${produto.serie}"></p>
+                            <div>
+                                <p class="nome_text" th:text="${produto.nome}"></p>
+                            </div>
+                            <div class="info_card">
+                                <div class="marca_text">
+                                    <p style="font-size: 15px; text-align: center;" th:text="${produto.marca}"></p>
                                 </div>
-                                <div class="serie_text">
-                                    <p style="font-size: 13px; text-align: center;">R$
-                                    <p style=" font-size: 13px; text-align: center;" th:text="${produto.preco}"></p>
-                                    </p>
+                                <div style="display: flex; flex-direction: column;">
+                                    <div class="serie">
+                                        <p style="font-size: 13px; text-align: center;" th:text="${produto.serie}"></p>
+                                    </div>
+                                    <div class="serie_text">
+                                        <p style="font-size: 13px; text-align: center;">R$
+                                        <p style=" font-size: 13px; text-align: center;" th:text="${produto.preco}"></p>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
 
@@ -149,33 +157,36 @@
 
             <div th:if="${produto.status != 'INATIVO'}" th:each="produto : ${produtos}" class="card">
 
+                <a th:href="@{/produtos/view/{id}(id=${produto.id})}" style="text-decoration: none;">
 
-                <div class="imagem_card">
-                    <img th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}"
-                        style="max-width: 200px; max-height: 200px;" />
-                </div>
+                    <div class="imagem_card">
+                        <img th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}"
+                            style="max-width: 200px; max-height: 200px;" />
 
-                <div>
-                    <p class="nome_text" th:text="${produto.nome}"></p>
-
-                </div>
-
-
-                <div class="info_card">
-                    <div class="marca_text">
-                        <p style="font-size: 15px; text-align: center;" th:text="${produto.marca}"></p>
                     </div>
-                    <div style="display: flex; flex-direction: column;">
-                        <div class="serie">
-                            <p style="font-size: 13px; text-align: center;" th:text="${produto.serie}"></p>
+
+                    <div>
+                        <p class="nome_text" th:text="${produto.nome}"></p>
+
+                    </div>
+
+
+                    <div class="info_card">
+                        <div class="marca_text">
+                            <p style="font-size: 15px; text-align: center;" th:text="${produto.marca}"></p>
                         </div>
-                        <div class="serie_text">
-                            <p style="font-size: 13px; text-align: center;">R$
-                            <p style=" font-size: 13px; text-align: center;" th:text="${produto.preco}"></p>
-                            </p>
+                        <div style="display: flex; flex-direction: column;">
+                            <div class="serie">
+                                <p style="font-size: 13px; text-align: center;" th:text="${produto.serie}"></p>
+                            </div>
+                            <div class="serie_text">
+                                <p style="font-size: 13px; text-align: center;">R$
+                                <p style=" font-size: 13px; text-align: center;" th:text="${produto.preco}"></p>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             </div>
         </section>
