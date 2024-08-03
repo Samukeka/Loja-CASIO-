@@ -1,0 +1,84 @@
+.cabecalho {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    justify-content: space-between;
+  }
+  
+  .logo {
+    flex: 1;
+  }
+  
+  .containerInfos {
+    display: flex;
+    flex: 2;
+    justify-content: center;
+    gap: 100px;
+  }
+  
+  .icons {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .container_buttons_search {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    flex: 1;
+    justify-content: flex-end;
+  }
+  
+  .icons {
+    padding: 10px;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .inputSearch {
+    background-image: url(../images/search.svg);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-origin: content-box;
+    border: none;
+    background-color: white;
+    height: 25px;
+    color: black;
+    border-radius: 15px;
+    text-align: center;
+    padding-left: 10px;
+    width: 200px;
+  }
+  
+  .inputSearch::placeholder {
+    color: black;
+  }
+  
+  .cabecalho>.containerInfos>a {
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    color: white;
+  }
+
+  body {
+    background-color: #E94B27;
+  }
+  
+  
+
+.containerTotal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 100px;
+}
+
+
+.fotos{
+   
+}
