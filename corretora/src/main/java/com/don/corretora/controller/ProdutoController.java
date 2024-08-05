@@ -55,6 +55,7 @@ public class ProdutoController {
             model.addAttribute("produtoDto", produtoDto);
 
             List<String> imagens = produto.getImagens();
+            System.out.println(imagens);
             model.addAttribute("imagens", imagens);
         } catch (Exception ex) {
             System.out.println("Exception: " + ex.getMessage());
