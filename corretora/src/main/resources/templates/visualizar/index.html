@@ -35,14 +35,36 @@
     <main class="containerTotal">
 
         <section class="fotos">
-            <div style="background-color: #0037d0;">
-                CAIXA 1
+            <div th:each="imagem : ${imagens}">
+                <img th:src="@{'/imagens_dos_produtos/' + ${imagem}}" alt="Imagem do Produto" />
             </div>
         </section>
 
-        <section class="infos">
-            <div style="background-color: #00d05e;">
-                CAIXA 2
+        <section class=" infos">
+            <div style=" margin: 50px;">
+                <div class="info_text">
+                    <a class="text_mini" th:text="${produto.marca}"></a>
+                    <a class="text_mini" th:text="${produto.colecao}"></a>
+                </div>
+                <div class="info_text">
+                    <a class="text_mini" th:text="${produto.serie}"></a>
+                </div>
+
+                <div class="info_text">
+                    <a class="text_central" th:text="${produto.nome}"></a>
+                </div>
+
+                <div style="margin-bottom: 20px; display: flex; align-items: center;">
+                    <p class="text_central">R$</p>
+                    <a class="text_central" th:text="${produto.preco}"></a>
+                </div>
+
+
+                <div class="containerButton">
+                    <a class="buttonBuy">ADICIONAR AO CARRINHO</a>
+                    <a class="buttonBuy">COMPRAR</a>
+
+                </div>
             </div>
         </section>
 
