@@ -42,28 +42,40 @@
 
         <section class=" infos">
             <div style=" margin: 50px;">
-                <div class="info_text">
-                    <a class="text_mini" th:text="${produto.marca}"></a>
-                    <a class="text_mini" th:text="${produto.colecao}"></a>
+                <div>
+                    <div class="info_text">
+                        <a class="text_mini" th:text="${produto.marca}"></a>
+                        <a class="text_mini" th:text="${produto.colecao}"></a>
+                    </div>
+                    <div class="info_text">
+                        <a class="text_mini" th:text="${produto.serie}"></a>
+                    </div>
+
+                    <div class="info_text">
+                        <a class="text_central" th:text="${produto.nome}"></a>
+                    </div>
+
+                    <div style="margin-bottom: 20px; display: flex; align-items: center;">
+                        <p class="text_central">R$</p>
+                        <a class="text_central" th:text="${produto.preco}"></a>
+                    </div>
+
                 </div>
-                <div class="info_text">
-                    <a class="text_mini" th:text="${produto.serie}"></a>
-                </div>
-
-                <div class="info_text">
-                    <a class="text_central" th:text="${produto.nome}"></a>
-                </div>
-
-                <div style="margin-bottom: 20px; display: flex; align-items: center;">
-                    <p class="text_central">R$</p>
-                    <a class="text_central" th:text="${produto.preco}"></a>
-                </div>
+                <section class="maisProdutos">
+                    <div th:each="produto : ${produtosMesmaSerie}">
+                        <a th:href="@{'/produto/view/' + ${produto.id}}">
+                            <img class="fotosProdutos" th:src="@{'/imagens_dos_produtos/' + ${produto.imagens[0]}}"
+                                alt="Relógios da mesma Série" />
+                        </a>
+                    </div>
+                </section>
 
 
-                <div class="containerButton">
-                    <a class="buttonBuy">ADICIONAR AO CARRINHO</a>
-                    <a class="buttonBuy">COMPRAR</a>
-
+                <div>
+                    <div class="containerButton">
+                        <a class="buttonBuy">ADICIONAR AO CARRINHO</a>
+                        <a class="buttonBuy">COMPRAR</a>
+                    </div>
                 </div>
             </div>
         </section>
