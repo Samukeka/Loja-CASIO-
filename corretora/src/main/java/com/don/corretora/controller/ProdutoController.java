@@ -1,6 +1,7 @@
 package com.don.corretora.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,6 +56,12 @@ public class ProdutoController {
             model.addAttribute("produtoDto", produtoDto);
 
             List<String> imagens = produto.getImagens();
+            List<Produto> produtosMesmaSerie = produtoRepository.findBySerie(produto.getSerie())
+                    .stream()
+                    .filter(p -> !p.getId().equals(id))
+                    .collect(Collectors.toList());
+            model.addAttribute("produtosMesmaSerie", produtosMesmaSerie);
+
             System.out.println(imagens);
             model.addAttribute("imagens", imagens);
         } catch (Exception ex) {
