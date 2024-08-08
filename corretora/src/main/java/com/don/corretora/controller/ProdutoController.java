@@ -1,5 +1,6 @@
 package com.don.corretora.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.don.corretora.model.Produto;
 import com.don.corretora.model.ProdutoDto;
@@ -71,6 +73,28 @@ public class ProdutoController {
 
         return "visualizar/index";
 
+    }
+
+    @GetMapping("/searchByAtributo")
+    public String searchByAtributo(@RequestParam String tipoAtributo,
+            @RequestParam String valorAtributo,
+            Model model) {
+        List<Produto> produtos;
+        switch (tipoAtributo) {
+            case "serie":
+                produtos = produtoRepository.findBySerie(valorAtributo);
+                break;
+            case "colecao":
+                produtos = produtoRepository.findByColecao(valorAtributo);
+                break;
+            case "marca":
+                produtos = produtoRepository.findByMarca(valorAtributo);
+                break;
+            default:
+                produtos = new ArrayList<>();
+        }
+        model.addAttribute("produtos", produtos);
+        return "visualizar/catalogo";
     }
 
 }

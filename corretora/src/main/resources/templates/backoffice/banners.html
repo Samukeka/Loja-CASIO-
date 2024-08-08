@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Banner</title>
+    <link rel="stylesheet" href="/path/to/your/css/styles.css"> <!-- Substitua com o caminho do seu CSS -->
+</head>
+
+<body>
+    <h1>Criar Novo Banner</h1>
+
+    <form action="/backoffice/cadastraBanner" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" required>
+        </div>
+
+        <div>
+            <label for="imagem">Imagem:</label>
+            <input type="file" id="imagem" name="imagem" accept="image/*" required>
+        </div>
+
+        <div>
+            <label for="tipoAtributo">Tipo de Atributo:</label>
+            <select id="tipoAtributo" name="tipoAtributo" required>
+                <option value="serie">Série</option>
+                <option value="colecao">Coleção</option>
+                <option value="marca">Marca</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="valorAtributo">Valor do Atributo:</label>
+            <input type="text" id="valorAtributo" name="valorAtributo" required>
+        </div>
+
+
+        <div class="row">
+            <label class="col-sm-4 col-form-label">Status</label>
+            <div class="col-sm-8">
+                <select class="form-control" id="status" name="status" required>
+                    <option value="ATIVO">ATIVO</option>
+                    <option value="INATIVO">INATIVO</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-sm-4 col-form-label">Sessão</label>
+            <div class="col-sm-8">
+                <select class="form-control" id="sessao" name="sessao" required>
+                    <option value="L1">LINHA 1</option>
+                    <option value="L2">LINHA 2</option>
+                    <option value="L3">LINHA 3</option>
+                    <option value="L4">LINHA 4</option>
+                    <option value="L5">LINHA 5</option>
+                    <option value="L6">LINHA 6</option>
+                </select>
+            </div>
+        </div>
+
+        <div>
+            <button type="submit">Salvar Banner</button>
+        </div>
+    </form>
+</body>
+
+</html>

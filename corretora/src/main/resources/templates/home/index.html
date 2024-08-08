@@ -69,7 +69,13 @@
             <h2 class="anuncio" style="position: absolute; padding-left: 830px;">NOVIDADES</h2>
 
             <div class="linha_produtos">
-                <img class="banners" src="banners/babyg.avif" />
+                <div th:each="banner : ${banners}" th:if="${banner.status != 'INATIVO' and banner.sessao == 'L2'}">
+                    <a
+                        th:href="@{/produto/searchByAtributo(tipoAtributo=${banner.tipoAtributo}, valorAtributo=${banner.valorAtributo})}">
+                        <img class="banners" th:src="@{'/imagens_banners/' + ${banner.imagem}}"
+                            th:alt="${banner.titulo}" />
+                    </a>
+                </div>
                 <div style="display: flex;">
                     <div th:if="${produto.status != 'INATIVO' && produto.novidade}" th:each="produto : ${produtos}"
                         class="card" style="margin-top: 0;">
@@ -115,11 +121,17 @@
 
 
             <div class="linha_produtos">
-                <img class="banners" src="banners/gmb2100.avif" />
+                <div th:each="banner : ${banners}" th:if="${banner.status != 'INATIVO' and banner.sessao == 'L3'}">
+                    <a
+                        th:href="@{/produto/searchByAtributo(tipoAtributo=${banner.tipoAtributo}, valorAtributo=${banner.valorAtributo})}">
+                        <img class="banners" th:src="@{'/imagens_banners/' + ${banner.imagem}}"
+                            th:alt="${banner.titulo}" />
+                    </a>
+                </div>
+
+
 
                 <div style="display: flex;">
-
-
 
                     <div th:if="${produto.status != 'INATIVO' && produto.desconto}" th:each="produto : ${produtos}"
                         class="card" style="margin-top: 0;">
@@ -189,6 +201,18 @@
                 </a>
             </div>
             </div>
+        </section>
+        <section class="terceira_linha">
+            <div class="linha_produtos">
+                <div th:each="banner : ${banners}" th:if="${banner.status != 'INATIVO' and banner.sessao == 'L4'}">
+                    <a
+                        th:href="@{/produto/searchByAtributo(tipoAtributo=${banner.tipoAtributo}, valorAtributo=${banner.valorAtributo})}">
+                        <img class="banners" th:src="@{'/imagens_banners/' + ${banner.imagem}}"
+                            th:alt="${banner.titulo}" />
+                    </a>
+                </div>
+            </div>
+
         </section>
     </main>
 
