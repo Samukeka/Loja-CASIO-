@@ -53,12 +53,12 @@ public class Produto {
     private Boolean destaque;
 
     private Boolean maisVendido;
-    
+
     private Boolean desconto;
 
     private Boolean novidade;
 
-
+    private String sessao;
 
     public Boolean getNovidade() {
         return novidade;
@@ -196,6 +196,12 @@ public class Produto {
         this.desconto = desconto;
     }
 
+    public String getSessao() {
+        return sessao;
+    }
 
-    
+    public void setSessao(String sessao) {
+        this.sessao = sessao;
+    }
+
 }
