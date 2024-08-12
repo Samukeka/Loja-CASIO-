@@ -326,6 +326,7 @@ public class BackOfficeController {
         produto.setEstilo(produtoDto.getEstilo());
         produto.setQuantidade_estoque(produtoDto.getQuantidade_estoque());
         produto.setDescricao(produtoDto.getDescricao());
+        produto.setSessao(produtoDto.getSessao());
         produto.setStatus("ATIVO");
         produto.setImagens(imagensSalvas);
         produto.setImagemPadrao(imagemPadrao);
@@ -362,6 +363,7 @@ public class BackOfficeController {
             produtoDto.setQuantidade_estoque(produto.getQuantidade_estoque());
             produtoDto.setDescricao(produto.getDescricao());
             produtoDto.setStatus(produto.getStatus());
+            produtoDto.setSessao(produto.getSessao());
 
             model.addAttribute("produtoDto", produtoDto);
 
@@ -402,6 +404,7 @@ public class BackOfficeController {
             produto.setSerie(produtoDto.getSerie());
             produto.setColecao(produtoDto.getColecao());
             produto.setCor(produtoDto.getCor());
+            produto.setSessao(produtoDto.getSessao());
             produto.setEstilo(produtoDto.getEstilo());
             produto.setQuantidade_estoque(produtoDto.getQuantidade_estoque());
             produto.setDescricao(produtoDto.getDescricao());
