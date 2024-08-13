@@ -80,7 +80,7 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  /* margin: 50px; */
+  margin-bottom: 50px;
 }
 
 .card {
@@ -195,7 +195,6 @@ p {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  margin: 50px;
 }
 
 .anuncio {
@@ -219,8 +218,8 @@ p {
 }
 
 .banners_juntos {
-  max-width: 647px;
-  margin-right: 30px;
+  max-width: 100%;
+  margin-right: auto;
 
 }
 
@@ -266,7 +265,7 @@ p {
 
 @media (min-width: 100px) and (max-width: 1600px) {
   body {
-    background-color: lightcoral;
+    background-color: #E94B27(0, 0, 0);
   }
 
   .banners {
@@ -281,7 +280,7 @@ p {
     height: 300px;
     width: 190px;
     justify-content: center;
-    margin-right: 5px;
+    margin-right: 50px;
     flex-direction: column;
     margin-top: 30px;
     border-radius: 10px;

@@ -110,9 +110,9 @@
             </div>
 
         </section>
+
         <div class="linha_banners">
             <img class="banners_juntos" src="banners/itzy.avif" />
-            <img class="banners_juntos" src="banners/it.avif" />
         </div>
 
         <section class="terceira_linha">
@@ -167,7 +167,8 @@
         </section>
         <section class="container_produtos">
 
-            <div th:if="${produto.status != 'INATIVO'}" th:each="produto : ${produtos}" class="card">
+            <div th:if="${produto.status != 'INATIVO' and produto.sessao == 'L2'}" th:each="produto : ${produtos}"
+                class="card">
 
                 <a th:href="@{/produto/view/{id}(id=${produto.id})}" style="text-decoration: none;">
 
@@ -202,7 +203,45 @@
             </div>
         </section>
 
-        <!-- <section class="terceira_linha">
+        <div class="linha_banners">
+            <img class="banners_juntos" src="banners/gshockRangeman.jpg" />
+        </div>
+
+        <section class="container_produtos">
+
+            <div th:if="${produto.status != 'INATIVO' and produto.sessao == 'L3'}" th:each="produto : ${produtos}"
+                class="card">
+                <a th:href="@{/produto/view/{id}(id=${produto.id})}" style="text-decoration: none;">
+                    <div class="imagem_card">
+                        <img class="produto_img" th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}" />
+                    </div>
+                    <div>
+                        <p class="nome_text" th:text="${produto.nome}"></p>
+                    </div>
+                    <div class="info_card">
+                        <div class="marca_text">
+                            <p class="textMarca" th:text="${produto.marca}"></p>
+                        </div>
+                        <div style="display: flex; flex-direction: column;">
+                            <div class="serie">
+                                <p class="cardText" th:text="${produto.serie}"></p>
+                            </div>
+                            <div class="serie_text">
+                                <p class="cardText">R$
+                                <p class="cardText" th:text="${produto.preco}"></p>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+
+        <section class="segunda_linha">
+            <h2 class="anuncio">COLLABS</h2>
+            <h2 class="anuncio_novidades">DESTAQUE</h2>
+
             <div class="linha_produtos">
                 <div th:each="banner : ${banners}" th:if="${banner.status != 'INATIVO' and banner.sessao == 'L4'}">
                     <a
@@ -211,9 +250,114 @@
                             th:alt="${banner.titulo}" />
                     </a>
                 </div>
+                <div style="display: flex;">
+                    <div th:if="${produto.status != 'INATIVO' && produto.destaque}" th:each="produto : ${produtos}"
+                        class="card" style="margin-top: 0;">
+                        <a th:href="@{/produto/view/{id}(id=${produto.id})}" style="text-decoration: none;">
+
+                            <div class="imagem_card">
+                                <img class="produto_img"
+                                    th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}" />
+                            </div>
+                            <div>
+                                <p class="nome_text" th:text="${produto.nome}"></p>
+                            </div>
+                            <div class="info_card">
+                                <div class="marca_text">
+                                    <p class="textMarca" th:text="${produto.marca}"></p>
+                                </div>
+                                <div style="display: flex; flex-direction: column;">
+                                    <div class="serie">
+                                        <p class="cardText" th:text="${produto.serie}"></p>
+                                    </div>
+                                    <div class="serie_text">
+                                        <p class="cardText">R$
+                                        <p class="cardText" th:text="${produto.preco}"></p>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
             </div>
 
+        </section>
+        <div class="linha_banners">
+            <img class="banners_juntos" src="banners/hero-pc.webp" />
+        </div>
+
+
+        <section class="container_produtos">
+
+            <div th:if="${produto.status != 'INATIVO' and produto.sessao == 'L5'}" th:each="produto : ${produtos}"
+                class="card">
+                <a th:href="@{/produto/view/{id}(id=${produto.id})}" style="text-decoration: none;">
+                    <div class="imagem_card">
+                        <img class="produto_img" th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}" />
+                    </div>
+                    <div>
+                        <p class="nome_text" th:text="${produto.nome}"></p>
+                    </div>
+                    <div class="info_card">
+                        <div class="marca_text">
+                            <p class="textMarca" th:text="${produto.marca}"></p>
+                        </div>
+                        <div style="display: flex; flex-direction: column;">
+                            <div class="serie">
+                                <p class="cardText" th:text="${produto.serie}"></p>
+                            </div>
+                            <div class="serie_text">
+                                <p class="cardText">R$
+                                <p class="cardText" th:text="${produto.preco}"></p>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- <section class="terceira_linha">
+            <h2 class="anuncio">MAIS VENDIDOS</h2>
+
+
+
+            <div style="display: flex;">
+
+                <div th:if="${produto.status != 'INATIVO' && produto.maisVendido}" th:each="produto : ${produtos}"
+                    class="card" style="margin-top: 0;">
+                    <a th:href="@{/produto/view/{id}(id=${produto.id})}" style="text-decoration: none;">
+
+                        <div class="imagem_card">
+                            <img class="produto_img" th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}" />
+                        </div>
+                        <div>
+                            <p class="nome_text" th:text="${produto.nome}"></p>
+                        </div>
+                        <div class="info_card">
+                            <div class="marca_text">
+                                <p class="textMarca" th:text="${produto.marca}"></p>
+                            </div>
+                            <div style="display: flex; flex-direction: column;">
+                                <div class="serie">
+                                    <p class="cardText" th:text="${produto.serie}"></p>
+                                </div>
+                                <div class="serie_text">
+                                    <p class="cardText">R$
+                                    <p class="cardText" th:text="${produto.preco}"></p>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            </div>
         </section> -->
+
     </main>
 
 </html>

@@ -89,5 +89,46 @@ body {
     background-color: rgb(43, 43, 43);
     height: 800px;
     width: 100%;
+    flex-wrap: wrap;
+    flex-direction: row;
 
+}
+
+.quadrado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: none;
+    border-right: none;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    margin: 5px;
+}
+
+.buttonCatalogo {
+
+    border: none;
+    background: none;
+    background-color: #424242;
+    flex: 1;
+    padding: 20px;
+    text-align: justify;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    color: white;
+}
+
+.product-card {
+    display: flex;
+    background-color: #626262;
+    margin: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagem_card {}
+
+.produto_img {
+    max-width: 190px;
+    max-height: 190px;
 }

@@ -32,11 +32,57 @@
 
     <main class="container_total">
         <section class="informacoes">
+            <div class="quadrado">
+                <button class="buttonCatalogo">
+                    Cores
+                </button>
+            </div>
+            <div class="quadrado">
+                <button class="buttonCatalogo">
+                    Modelos
+                </button>
+            </div>
+            <div class="quadrado">
+                <button class="buttonCatalogo">
+                    Marcas
+                </button>
+            </div>
+            <div class="quadrado">
+                <button class="buttonCatalogo">
+                    Coleção
+                </button>
+            </div>
 
+            <div class="quadrado">
+                <button class="buttonCatalogo">
+                    Estilo
+                </button>
+            </div>
+            <div class="quadrado">
+                <button class="buttonCatalogo">
+                    Gênero
+                </button>
+            </div>
+            <div class="quadrado">
+                <button class="buttonCatalogo">
+                    Estilo
+                </button>
+            </div>
+            <div class="quadrado">
+                <button class="buttonCatalogo">
+                    Série
+                </button>
+            </div>
         </section>
 
 
         <section class="catalogo">
+            <div th:each="produto : ${produtos}" class="product-card">
+                <div class="imagem_card">
+                    <img class="produto_img" th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}" />
+                </div>
+
+            </div>
 
         </section>
     </main>
