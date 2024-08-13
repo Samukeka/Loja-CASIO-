@@ -337,7 +337,7 @@ public class BackOfficeController {
 
         produtoRepository.save(produto);
 
-        return "redirect:/backoffice/home";
+        return "redirect:/backoffice/produtos";
     }
 
     @GetMapping("/editarproduto")
@@ -497,6 +497,36 @@ public class BackOfficeController {
 
         } else if (produto.getNovidade() == false) {
             produto.setNovidade(true);
+        }
+
+        produtoRepository.save(produto);
+        return "redirect:/backoffice/produtos";
+    }
+
+    @PostMapping("/destaque")
+    public String definirDestaque(@RequestParam Long id) {
+        Produto produto = produtoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("produto não encontrado"));
+        if (produto.getDestaque() == true) {
+            produto.setDestaque(false);
+
+        } else if (produto.getDestaque() == false) {
+            produto.setDestaque(true);
+        }
+
+        produtoRepository.save(produto);
+        return "redirect:/backoffice/produtos";
+    }
+
+    @PostMapping("/maisVendido")
+    public String definirMaisVendido(@RequestParam Long id) {
+        Produto produto = produtoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("produto não encontrado"));
+        if (produto.getMaisVendido() == true) {
+            produto.setMaisVendido(false);
+
+        } else if (produto.getMaisVendido() == false) {
+            produto.setMaisVendido(true);
         }
 
         produtoRepository.save(produto);

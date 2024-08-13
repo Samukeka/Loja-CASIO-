@@ -51,6 +51,10 @@
                     <th>Quantidade no Estoque</th>
                     <th>Status</th>
                     <th>Novidade</th>
+                    <th>Mais Vendido</th>
+                    <th>Destaque</th>
+                    <th>Linha de exibição</th>
+
 
 
 
@@ -70,6 +74,10 @@
 
                     <td th:text="${produto.status}"></td>
                     <td th:text="${produto.novidade}" style="text-transform: uppercase;"></td>
+                    <td th:text="${produto.MaisVendido}" style="text-transform: uppercase;"></td>
+                    <td th:text="${produto.destaque}" style="text-transform: uppercase;"></td>
+
+                    <td th:text="${produto.sessao}" style="text-transform: uppercase;"></td>
 
                     <td style="white-space:nowrap">
                         <a th:if="${cargoUsuario == 'Administrador'}" class="btn btn-primary btn-sm"
@@ -82,9 +90,23 @@
                             <th:block th:if="${cargoUsuario != null && cargoUsuario == 'Administrador'}">
                                 <button type="submit" class="btn btn-danger btn-sm">Definir como Novidade</button>
                             </th:block>
-
-
                         </form>
+
+                        <form th:action="@{/backoffice/destaque}" method="post">
+                            <input type="hidden" th:name="id" th:value="${produto.id}" />
+                            <th:block th:if="${cargoUsuario != null && cargoUsuario == 'Administrador'}">
+                                <button type="submit" class="btn btn-danger btn-sm">Definir como Destaque</button>
+                            </th:block>
+                        </form>
+
+                        <form th:action="@{/backoffice/maisVendido}" method="post">
+                            <input type="hidden" th:name="id" th:value="${produto.id}" />
+                            <th:block th:if="${cargoUsuario != null && cargoUsuario == 'Administrador'}">
+                                <button type="submit" class="btn btn-danger btn-sm">Definir como Produto Mais
+                                    Vendido</button>
+                            </th:block>
+                        </form>
+
                         <form th:action="@{/backoffice/atualizarStatus}" method="post">
                             <input type="hidden" th:name="id" th:value="${produto.id}" />
                             <th:block th:if="${cargoUsuario != null && cargoUsuario == 'Administrador'}">

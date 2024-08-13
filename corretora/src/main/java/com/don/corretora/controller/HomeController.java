@@ -46,7 +46,7 @@ public class HomeController {
         model.addAttribute("destaques", produtoRepository.findByDestaqueTrue());
         model.addAttribute("novidades", produtoRepository.findByNovidadeTrue());
         model.addAttribute("descontos", produtoRepository.findByDescontoTrue());
-        model.addAttribute("maisVendidos", produtoRepository.findByMaisVendidoTrue());
+        model.addAttribute("maisVendido", produtoRepository.findByMaisVendidoTrue());
         model.addAttribute("produtos", produtos);
 
         return "home/index";
