@@ -76,7 +76,7 @@
                             th:alt="${banner.titulo}" />
                     </a>
                 </div>
-                <div style="display: flex;">
+                <div class="cards_container">
                     <div th:if="${produto.status != 'INATIVO' && produto.novidade}" th:each="produto : ${produtos}"
                         class="card" style="margin-top: 0;">
                         <a th:href="@{/produto/view/{id}(id=${produto.id})}" style="text-decoration: none;">
@@ -131,7 +131,7 @@
 
 
 
-                <div style="display: flex;">
+                <div class="cards_container">
 
                     <div th:if="${produto.status != 'INATIVO' && produto.desconto}" th:each="produto : ${produtos}"
                         class="card" style="margin-top: 0;">
@@ -204,7 +204,7 @@
         </section>
 
         <div class="linha_banners">
-            <img class="banners_juntos" src="banners/gshockRangeman.jpg" />
+            <img class="banners_juntos" src="banners/itzy.avif" />
         </div>
 
         <section class="container_produtos">
@@ -250,7 +250,7 @@
                             th:alt="${banner.titulo}" />
                     </a>
                 </div>
-                <div style="display: flex;">
+                <div class="cards_container">
                     <div th:if="${produto.status != 'INATIVO' && produto.destaque}" th:each="produto : ${produtos}"
                         class="card" style="margin-top: 0;">
                         <a th:href="@{/produto/view/{id}(id=${produto.id})}" style="text-decoration: none;">
