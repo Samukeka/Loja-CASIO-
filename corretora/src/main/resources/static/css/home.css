@@ -1,5 +1,5 @@
 body {
-  background-color: #E94B27;
+  background-color: #afafaf;
 }
 
 main {
@@ -81,6 +81,7 @@ main {
   justify-content: center;
   align-items: center;
   margin-bottom: 50px;
+  gap: 60px;
 }
 
 .card {
@@ -89,7 +90,6 @@ main {
   height: 360px;
   width: 220px;
   justify-content: center;
-  margin-right: 55px;
   flex-direction: column;
   margin-top: 30px;
   border-radius: 10px;
@@ -212,7 +212,7 @@ p {
 }
 
 .banners {
-  max-width: 800px;
+  max-width: 840px;
   margin-right: 30px;
 
 }
@@ -244,7 +244,7 @@ p {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 300;
   position: absolute;
-  padding-left: 830px;
+  padding-left: 870px;
 }
 
 .produto_img {
@@ -263,9 +263,14 @@ p {
 }
 
 
+.cards_container {
+  display: flex;
+  gap: 45px;
+}
+
 @media (min-width: 100px) and (max-width: 1600px) {
   body {
-    background-color: #E94B27(0, 0, 0);
+    background-color: #da4a2a(0, 0, 0);
   }
 
   .banners {
