@@ -279,13 +279,28 @@ p {
 
   }
 
+
+
+  .container_produtos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+    gap: 55px;
+  }
+
+  .cards_container {
+    display: flex;
+    gap: 55px;
+  }
+
   .card {
     display: flex;
     background-color: rgb(20, 20, 20);
     height: 300px;
     width: 190px;
     justify-content: center;
-    margin-right: 50px;
     flex-direction: column;
     margin-top: 30px;
     border-radius: 10px;
