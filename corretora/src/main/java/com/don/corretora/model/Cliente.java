@@ -15,10 +15,9 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Usuario")
-public class Usuario {
+@Table(name = "Cliente")
+public class Cliente {
 
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,17 +26,16 @@ public class Usuario {
     private String senha;
     private String genero;
     private Date dataNascimento;
-    
-    @OneToMany(mappedBy = "usuario", cascade =  CascadeType.ALL)
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Pedido> pedidos = new ArrayList<>();
 
     @OneToOne
     @JoinColumn(name = "id_endereco_padrao")
     private Endereco enderecoPadrao;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Endereco> todosEnderecos = new ArrayList<>();
-
 
     public String getEmail() {
         return email;
@@ -110,7 +108,5 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
-    
 
 }

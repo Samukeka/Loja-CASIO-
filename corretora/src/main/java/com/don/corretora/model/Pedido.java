@@ -7,17 +7,16 @@ import java.util.List;
 
 import jakarta.persistence.*;
 
-
 @Entity
 public class Pedido {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente")
-    private Usuario usuario;
+    private Cliente cliente;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<ItemPedido> itens = new ArrayList<>();
@@ -36,68 +35,85 @@ public class Pedido {
 
     private LocalDate data_do_pedido;
     private BigDecimal frete;
+
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
-    public Usuario getUsuario() {
-        return usuario;
-    }
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+
     public List<ItemPedido> getItens() {
         return itens;
     }
+
     public void setItens(List<ItemPedido> itens) {
         this.itens = itens;
     }
+
     public BigDecimal getValor_total() {
         return valor_total;
     }
+
     public void setValor_total(BigDecimal valor_total) {
         this.valor_total = valor_total;
     }
+
     public String getStatus() {
         return status;
     }
+
     public void setStatus(String status) {
         this.status = status;
     }
+
     public String getCodigo_do_pedido() {
         return codigo_do_pedido;
     }
+
     public void setCodigo_do_pedido(String codigo_do_pedido) {
         this.codigo_do_pedido = codigo_do_pedido;
     }
+
     public Endereco getEndereco_de_entrega() {
         return endereco_de_entrega;
     }
+
     public void setEndereco_de_entrega(Endereco endereco_de_entrega) {
         this.endereco_de_entrega = endereco_de_entrega;
     }
-    
+
     public LocalDate getData_do_pedido() {
         return data_do_pedido;
     }
+
     public void setData_do_pedido(LocalDate data_do_pedido) {
         this.data_do_pedido = data_do_pedido;
     }
+
     public BigDecimal getFrete() {
         return frete;
     }
+
     public void setFrete(BigDecimal frete) {
         this.frete = frete;
     }
+
     public FormaDePagamento getFormaDePagamento() {
         return formaDePagamento;
     }
+
     public void setFormaDePagamento(FormaDePagamento formaDePagamento) {
         this.formaDePagamento = formaDePagamento;
     }
 
-    
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
 }
