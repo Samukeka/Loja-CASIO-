@@ -65,7 +65,7 @@
 }
 
 body {
-  background-color: #E94B27;
+  background-color: #afafaf;
 }
 
 
@@ -133,7 +133,7 @@ body {
   font-weight: 400;
   color: white;
   margin-right: 20px;
-  border-bottom: 3px solid #E94B27;
+  border-bottom: 3px solid #555555;
 }
 
 .containerButton {
@@ -147,7 +147,7 @@ body {
 .buttonBuy {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: white;
-  background-color: #E94B27;
+  background-color: #555555;
   /* padding: 15px; */
   font-size: 15px;
   display: flex;

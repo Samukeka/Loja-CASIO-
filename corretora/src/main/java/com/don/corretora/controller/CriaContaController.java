@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.don.corretora.model.Usuario;
-import com.don.corretora.model.UsuarioDto;
-import com.don.corretora.repository.UsuarioRepository;
+import com.don.corretora.model.Cliente;
+import com.don.corretora.model.ClienteDto;
+import com.don.corretora.repository.ClienteRepository;
 
 import jakarta.validation.Valid;
 
@@ -22,44 +22,42 @@ import jakarta.validation.Valid;
 public class CriaContaController {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private ClienteRepository clienteRepository;
 
     PasswordEncoder passwordEncoder;
-    
 
-    public CriaContaController(UsuarioRepository usuarioRepository) {
+    public CriaContaController(ClienteRepository usuarioRepository) {
         this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
     @GetMapping("/cadastrar")
-    public String getCadastrar(Model model){
-        UsuarioDto usuarioDto = new UsuarioDto();
-        model.addAttribute("usuarioDto", usuarioDto);
+    public String getCadastrar(Model model) {
+        ClienteDto clienteDto = new ClienteDto();
+        model.addAttribute("clienteDto", clienteDto);
         return "cadastro/usuario";
     }
 
-
     @PostMapping("/cadastrar")
-    public String cadastrarUsuario(@ModelAttribute("usuarioDto") @Valid UsuarioDto usuarioDto, BindingResult bindingResult, Model model){
+    public String cadastrarUsuario(@ModelAttribute("clienteDto") @Valid ClienteDto clienteDto,
+            BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return "cadastro/usuario";
         }
 
-
-        if(usuarioRepository.existsByNome((usuarioDto.getNome()))){
-            bindingResult.rejectValue("nome", "error.usuarioDto", "Este nome já está em uso");
+        if (clienteRepository.existsByNome((clienteDto.getNome()))) {
+            bindingResult.rejectValue("nome", "error.clienteDto", "Este nome já está em uso");
             return "cadastro/usuario";
-            
+
         }
 
-        Usuario usuario = new Usuario();
+        Cliente usuario = new Cliente();
 
-        usuario.setNome(usuarioDto.getNome());
+        usuario.setNome(clienteDto.getNome());
 
-        String senhaCriptada = this.passwordEncoder.encode(usuarioDto.getSenha());
+        String senhaCriptada = this.passwordEncoder.encode(clienteDto.getSenha());
 
         usuario.setSenha(senhaCriptada);
-        usuarioRepository.save(usuario);
+        clienteRepository.save(usuario);
 
         return "redirect:/home";
     }

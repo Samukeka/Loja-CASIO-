@@ -266,11 +266,24 @@ p {
 .cards_container {
   display: flex;
   gap: 45px;
+  transition: transform 0.5s ease;
 }
+
+
+
+
+.carousel {
+  position: relative;
+  width: 750px;
+  overflow: hidden;
+}
+
+
+
 
 @media (min-width: 100px) and (max-width: 1600px) {
   body {
-    background-color: #da4a2a(0, 0, 0);
+    background-color: #020061(0, 0, 0);
   }
 
   .banners {
@@ -293,6 +306,7 @@ p {
   .cards_container {
     display: flex;
     gap: 55px;
+
   }
 
   .card {
@@ -371,5 +385,43 @@ p {
     display: flex;
     flex-direction: row;
     justify-content: center;
+  }
+
+
+  button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+    transition: color 0.3s ease;
+  }
+
+  button:hover {
+    color: #007bff;
+    /* Cor de destaque no hover */
+  }
+
+  .carousel {
+    position: relative;
+  }
+
+  .prev,
+  .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #fff;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .prev {
+    left: 10px;
+  }
+
+  .next {
+    right: 10px;
   }
 }

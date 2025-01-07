@@ -5,14 +5,14 @@ import jakarta.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class FormaDePagamento {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "id_cliente")
-    private Usuario usuario;
+    private Cliente usuario;
 
     // Getters e setters
     public Long getId() {
@@ -23,11 +23,11 @@ public abstract class FormaDePagamento {
         this.id = id;
     }
 
-    public Usuario getUsuario() {
+    public Cliente getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(Cliente usuario) {
         this.usuario = usuario;
     }
 }

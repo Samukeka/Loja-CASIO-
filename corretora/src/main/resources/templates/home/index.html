@@ -76,38 +76,50 @@
                             th:alt="${banner.titulo}" />
                     </a>
                 </div>
-                <div class="cards_container">
-                    <div th:if="${produto.status != 'INATIVO' && produto.novidade}" th:each="produto : ${produtos}"
-                        class="card" style="margin-top: 0;">
-                        <a th:href="@{/produto/view/{id}(id=${produto.id})}" style="text-decoration: none;">
 
-                            <div class="imagem_card">
-                                <img class="produto_img"
-                                    th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}" />
-                            </div>
-                            <div>
-                                <p class="nome_text" th:text="${produto.nome}"></p>
-                            </div>
-                            <div class="info_card">
-                                <div class="marca_text">
-                                    <p class="textMarca" th:text="${produto.marca}"></p>
+
+
+                <button class="prev" data-target="carousel1">&#10094;</button>
+
+                <div id="carousel1" class="carousel">
+
+                    <div class="cards_container">
+                        <div th:if="${produto.status != 'INATIVO' && produto.novidade}" th:each="produto : ${produtos}"
+                            class="card" style="margin-top: 0;">
+                            <a th:href="@{/produto/view/{id}(id=${produto.id})}" style="text-decoration: none;">
+
+                                <div class="imagem_card">
+                                    <img class="produto_img"
+                                        th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}" />
                                 </div>
-                                <div style="display: flex; flex-direction: column;">
-                                    <div class="serie">
-                                        <p class="cardText" th:text="${produto.serie}"></p>
+                                <div>
+                                    <p class="nome_text" th:text="${produto.nome}"></p>
+                                </div>
+                                <div class="info_card">
+                                    <div class="marca_text">
+                                        <p class="textMarca" th:text="${produto.marca}"></p>
                                     </div>
-                                    <div class="serie_text">
-                                        <p class="cardText">R$
-                                        <p class="cardText" th:text="${produto.preco}"></p>
-                                        </p>
+                                    <div style="display: flex; flex-direction: column;">
+                                        <div class="serie">
+                                            <p class="cardText" th:text="${produto.serie}"></p>
+                                        </div>
+                                        <div class="serie_text">
+                                            <p class="cardText">R$
+                                            <p class="cardText" th:text="${produto.preco}"></p>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
                 </div>
+                <button class="next" data-target="carousel1">&#10095;</button>
 
             </div>
+
+
+
 
         </section>
 
@@ -129,39 +141,45 @@
                     </a>
                 </div>
 
+                <button class="prev" data-target="carousel2">&#10094;</button>
 
 
-                <div class="cards_container">
+                <div id="carousel2" class="carousel">
 
-                    <div th:if="${produto.status != 'INATIVO' && produto.desconto}" th:each="produto : ${produtos}"
-                        class="card" style="margin-top: 0;">
-                        <a th:href="@{/produto/view/{id}(id=${produto.id})}" style="text-decoration: none;">
+                    <div class="cards_container">
 
-                            <div class="imagem_card">
-                                <img class="produto_img"
-                                    th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}" />
-                            </div>
-                            <div>
-                                <p class="nome_text" th:text="${produto.nome}"></p>
-                            </div>
-                            <div class="info_card">
-                                <div class="marca_text">
-                                    <p class="textMarca" th:text="${produto.marca}"></p>
+                        <div th:if="${produto.status != 'INATIVO' && produto.desconto}" th:each="produto : ${produtos}"
+                            class="card" style="margin-top: 0;">
+                            <a th:href="@{/produto/view/{id}(id=${produto.id})}" style="text-decoration: none;">
+
+                                <div class="imagem_card">
+                                    <img class="produto_img"
+                                        th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}" />
                                 </div>
-                                <div style="display: flex; flex-direction: column;">
-                                    <div class="serie">
-                                        <p class="cardText" th:text="${produto.serie}"></p>
+                                <div>
+                                    <p class="nome_text" th:text="${produto.nome}"></p>
+                                </div>
+                                <div class="info_card">
+                                    <div class="marca_text">
+                                        <p class="textMarca" th:text="${produto.marca}"></p>
                                     </div>
-                                    <div class="serie_text">
-                                        <p class="cardText">R$
-                                        <p class="cardText" th:text="${produto.preco}"></p>
-                                        </p>
+                                    <div style="display: flex; flex-direction: column;">
+                                        <div class="serie">
+                                            <p class="cardText" th:text="${produto.serie}"></p>
+                                        </div>
+                                        <div class="serie_text">
+                                            <p class="cardText">R$
+                                            <p class="cardText" th:text="${produto.preco}"></p>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
                 </div>
+                <button class="next" data-target="carousel2">&#10095;</button>
+
 
             </div>
         </section>
@@ -250,38 +268,43 @@
                             th:alt="${banner.titulo}" />
                     </a>
                 </div>
-                <div class="cards_container">
-                    <div th:if="${produto.status != 'INATIVO' && produto.destaque}" th:each="produto : ${produtos}"
-                        class="card" style="margin-top: 0;">
-                        <a th:href="@{/produto/view/{id}(id=${produto.id})}" style="text-decoration: none;">
 
-                            <div class="imagem_card">
-                                <img class="produto_img"
-                                    th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}" />
-                            </div>
-                            <div>
-                                <p class="nome_text" th:text="${produto.nome}"></p>
-                            </div>
-                            <div class="info_card">
-                                <div class="marca_text">
-                                    <p class="textMarca" th:text="${produto.marca}"></p>
+                <button class="prev" data-target="carousel3">&#10094;</button>
+
+                <div id="carousel3" class="carousel">
+                    <div class="cards_container">
+                        <div th:if="${produto.status != 'INATIVO' && produto.destaque}" th:each="produto : ${produtos}"
+                            class="card" style="margin-top: 0;">
+                            <a th:href="@{/produto/view/{id}(id=${produto.id})}" style="text-decoration: none;">
+
+                                <div class="imagem_card">
+                                    <img class="produto_img"
+                                        th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}" />
                                 </div>
-                                <div style="display: flex; flex-direction: column;">
-                                    <div class="serie">
-                                        <p class="cardText" th:text="${produto.serie}"></p>
+                                <div>
+                                    <p class="nome_text" th:text="${produto.nome}"></p>
+                                </div>
+                                <div class="info_card">
+                                    <div class="marca_text">
+                                        <p class="textMarca" th:text="${produto.marca}"></p>
                                     </div>
-                                    <div class="serie_text">
-                                        <p class="cardText">R$
-                                        <p class="cardText" th:text="${produto.preco}"></p>
-                                        </p>
+                                    <div style="display: flex; flex-direction: column;">
+                                        <div class="serie">
+                                            <p class="cardText" th:text="${produto.serie}"></p>
+                                        </div>
+                                        <div class="serie_text">
+                                            <p class="cardText">R$
+                                            <p class="cardText" th:text="${produto.preco}"></p>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
-                </div>
 
-            </div>
+                </div>
+                <button class="next" data-target="carousel3">&#10095;</button>
 
         </section>
         <div class="linha_banners">
@@ -359,5 +382,40 @@
         </section> -->
 
     </main>
+
+    <script>
+        let currentSlides = {};
+
+        function moveCarousel(button, direction) {
+            const targetId = button.getAttribute('data-target');
+            const container = document.querySelector(`#${targetId} .cards_container`);
+
+            if (!currentSlides[targetId]) {
+                currentSlides[targetId] = 0;
+            }
+
+            const totalItems = container.children.length;
+            const itemWidth = container.children[0].offsetWidth + 35;
+            const maxSlides = Math.ceil(totalItems - (container.offsetWidth / itemWidth));
+
+            currentSlides[targetId] += direction;
+
+            if (currentSlides[targetId] < 0) {
+                currentSlides[targetId] = 0;
+            } else if (currentSlides[targetId] > maxSlides) {
+                currentSlides[targetId] = maxSlides;
+            }
+
+            container.style.transform = `translateX(-${currentSlides[targetId] * itemWidth}px)`;
+        }
+
+        document.querySelectorAll('button[data-target]').forEach(button => {
+            button.addEventListener('click', () => {
+                const direction = button.classList.contains('next') ? 1 : -1;
+                moveCarousel(button, direction);
+            });
+        });
+    </script>
+
 
 </html>

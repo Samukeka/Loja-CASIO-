@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.don.corretora.model.Banner;
 import com.don.corretora.model.Produto;
-import com.don.corretora.model.Usuario;
+import com.don.corretora.model.Cliente;
 import com.don.corretora.repository.BannerRepository;
 import com.don.corretora.repository.ProdutoRepository;
 
@@ -29,15 +29,15 @@ public class HomeController {
     @GetMapping({ "", "/" })
     public String home(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
-        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        Cliente clienteLogado = (Cliente) session.getAttribute("clienteLogado");
 
-        if (usuarioLogado != null) {
-            model.addAttribute("usuarioLogado", true);
-            model.addAttribute("usuarioId", usuarioLogado.getId());
-            model.addAttribute("nomeUsuario", usuarioLogado.getNome());
+        if (clienteLogado != null) {
+            model.addAttribute("clienteLogado", true);
+            model.addAttribute("clienteId", clienteLogado.getId());
+            model.addAttribute("nomeCliente", clienteLogado.getNome());
 
         } else {
-            model.addAttribute("usuarioLogado", false);
+            model.addAttribute("clienteLogado", false);
         }
 
         List<Banner> banners = bannerRepository.findAll();

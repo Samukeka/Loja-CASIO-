@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.don.corretora.model.Produto;
 import com.don.corretora.model.ProdutoDto;
-import com.don.corretora.model.Usuario;
+import com.don.corretora.model.Cliente;
 import com.don.corretora.repository.ProdutoRepository;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -34,7 +34,7 @@ public class ProdutoController {
             Produto produto = produtoRepository.findById(id)
                     .orElseThrow(() -> new RuntimeException("Produto Não Encontrado"));
             HttpSession session = request.getSession();
-            Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+            Cliente usuarioLogado = (Cliente) session.getAttribute("usuarioLogado");
 
             if (usuarioLogado != null) {
                 model.addAttribute("usuarioLogado", true);

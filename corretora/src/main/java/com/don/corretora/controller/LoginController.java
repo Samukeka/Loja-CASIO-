@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.don.corretora.model.Usuario;
-import com.don.corretora.model.UsuarioDto;
-import com.don.corretora.repository.UsuarioRepository;
+import com.don.corretora.model.Cliente;
+import com.don.corretora.model.ClienteDto;
+import com.don.corretora.repository.ClienteRepository;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -19,31 +19,28 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 @Service
 public class LoginController {
-    
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private ClienteRepository clienteRepository;
 
     PasswordEncoder passwordEncoder;
 
-
-     @GetMapping("/login")
+    @GetMapping("/login")
     public String getSignupPage() {
         return "home/login";
     }
 
     @PostMapping("/login")
-    public String submitLogin(UsuarioDto usuarioDto, HttpServletRequest request) {
-        Optional<Usuario> usuarioOptional = usuarioRepository.findByNome(usuarioDto.getNome());
+    public String submitLogin(ClienteDto clienteDto, HttpServletRequest request) {
+        Optional<Cliente> clienteOptional = clienteRepository.findByNome(clienteDto.getNome());
 
-        if (usuarioOptional.isPresent()) {
-            Usuario usuario = usuarioOptional.get();
+        if (clienteOptional.isPresent()) {
+            Cliente cliente = clienteOptional.get();
 
-
-            if (passwordEncoder.matches(usuarioDto.getSenha(), usuario.getSenha())) {
+            if (passwordEncoder.matches(clienteDto.getSenha(), cliente.getSenha())) {
 
                 HttpSession session = request.getSession();
-                session.setAttribute("usuarioLogado", usuario);
+                session.setAttribute("clienteLogado", cliente);
 
                 return "redirect:/home";
 
