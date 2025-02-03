@@ -75,7 +75,11 @@
 
                 <div>
                     <div class="containerButton">
-                        <a class="buttonBuy">ADICIONAR AO CARRINHO</a>
+
+                        <form th:action="@{/carrinho/adicionar/{id}(id=${produto.id})}" method="post">
+                            <button class="buttonBuy" type="submit">Adicionar ao Carrinho</button>
+                        </form>
+
                         <a class="buttonBuy">COMPRAR</a>
                     </div>
                 </div>
