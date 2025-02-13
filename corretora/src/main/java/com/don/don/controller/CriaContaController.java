@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.don.don.model.Cliente;
 import com.don.don.model.ClienteDto;
+import com.don.don.model.Endereco;
 import com.don.don.repository.ClienteRepository;
+import com.don.don.repository.EnderecoRepository;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,6 +26,9 @@ public class CriaContaController {
 
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private EnderecoRepository enderecoRepository;
 
     PasswordEncoder passwordEncoder;
 
@@ -51,15 +56,35 @@ public class CriaContaController {
 
         }
 
-        Cliente usuario = new Cliente();
+        if (!clienteDto.getSenha().equals(clienteDto.getConfirmaSenha())) {
+            bindingResult.rejectValue("confirmaSenha", "error.clienteDto", "As senhas não coincidem");
+            return "cadastro/usuario";
 
-        usuario.setNome(clienteDto.getNome());
+        }
+
+        Cliente cliente = new Cliente();
+        cliente.setNome(clienteDto.getNome());
+        cliente.setEmail(clienteDto.getEmail());
+        cliente.setGenero(clienteDto.getGenero());
+        cliente.setDataNascimento(clienteDto.getDataNascimento());
 
         String senhaCriptada = this.passwordEncoder.encode(clienteDto.getSenha());
+        cliente.setSenha(senhaCriptada);
 
-        usuario.setSenha(senhaCriptada);
-        clienteRepository.save(usuario);
+        Endereco endereco = new Endereco();
+        endereco.setCep(clienteDto.getCep());
+        endereco.setLogradouro(clienteDto.getLogradouro());
+        endereco.setNumero(clienteDto.getNumero());
+        endereco.setComplemento(clienteDto.getComplemento());
+        endereco.setBairro(clienteDto.getBairro());
+        endereco.setCidade(clienteDto.getCidade());
+        endereco.setUf(clienteDto.getUf());
 
-        return "redirect:/home";
+        enderecoRepository.save(endereco);
+        cliente.setEnderecoPadrao(endereco);
+
+        clienteRepository.save(cliente);
+
+        return "redirect:/index";
     }
 }
