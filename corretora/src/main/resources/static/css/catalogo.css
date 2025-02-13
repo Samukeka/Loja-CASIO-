@@ -100,8 +100,8 @@ body {
     align-items: center;
     border-left: none;
     border-right: none;
-    border-top: 2px solid white;
-    border-bottom: 2px solid white;
+    /* border-top: 2px solid white;
+    border-bottom: 2px solid white; */
     margin: 5px;
 }
 
@@ -122,8 +122,10 @@ body {
     display: flex;
     background-color: #626262;
     margin: 20px;
-    align-items: center;
     justify-content: center;
+    height: 200px;
+
+
 }
 
 .imagem_card {}

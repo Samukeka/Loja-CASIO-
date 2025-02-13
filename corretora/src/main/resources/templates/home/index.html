@@ -27,7 +27,9 @@
             <input class="inputSearch" alt="campo de pesquisa" type="text" placeholder="Pesquisar...">
             <div class="buttons">
                 <a href="/carrinho"><img src="images/cart.svg" class="icons" alt="home"></a>
-                <a id="profile" href="/perfil"><img src="images/profile.svg" class="icons" alt="Perfil"></a>
+                <a id="profile" th:href="${clienteLogado} ? '/perfil' : 'cliente/login'">
+                    <img src="images/profile.svg" class="icons" alt="Perfil">
+                </a>
             </div>
         </div>
     </header>
