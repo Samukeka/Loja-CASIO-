@@ -88,7 +88,39 @@
 
     </main>
 
+    <div class="floating-words-container">
 
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const container = document.querySelector(".floating-words-container");
+                const words = ["시계", "홍보", "카시오", "G-SHOCK", "나는 사고 싶다", "저렴한 가격", "DESIGN BY. SAMUEL BRAGA", "美丽的", "很漂亮", "我想住在巴西以外的地方"];
+                const colors = ["#7BD3EA", "#FF2929", "#8B5DFF", "#3C552D", "#FFE31A", "black", "#DE8F5F", "#8ABFA3", "#10375C", "#73EC8B", "#D91656", "#B8001F", "#FFEFC8", "#DF6D14", "#D70654", "#FCC6FF", "#16C47F"];
+
+                function createFloatingWord() {
+                    const wordElement = document.createElement("div");
+                    wordElement.classList.add("floating-word");
+                    wordElement.textContent = words[Math.floor(Math.random() * words.length)];
+
+                    wordElement.style.color = colors[Math.floor(Math.random() * colors.length)];
+                    wordElement.style.top = `${Math.random() * 100}vh`;
+                    wordElement.style.animationDuration = `${7 + Math.random() * 5}s`;
+
+                    container.appendChild(wordElement);
+
+                    const checkPosition = setInterval(() => {
+                        const rect = wordElement.getBoundingClientRect();
+                        if (rect.right < 0) {
+                            wordElement.remove();
+                            clearInterval(checkPosition);
+                        }
+                    }, 100);
+                }
+
+                setInterval(createFloatingWord, 1500);
+            });
+        </script>
 
 
 

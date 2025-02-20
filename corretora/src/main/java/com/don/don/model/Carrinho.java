@@ -5,13 +5,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 @Component
 public class Carrinho {
     private List<ItemPedido> itens;
     private BigDecimal total;
     private BigDecimal frete;
-    private FormaDePagamento formadepagamento;
-    private String cupomDesconto;
 
     public List<ItemPedido> getItens() {
         return itens;
@@ -35,22 +36,6 @@ public class Carrinho {
 
     public void setFrete(BigDecimal frete) {
         this.frete = frete;
-    }
-
-    public FormaDePagamento getFormadepagamento() {
-        return formadepagamento;
-    }
-
-    public void setFormadepagamento(FormaDePagamento formadepagamento) {
-        this.formadepagamento = formadepagamento;
-    }
-
-    public String getCupomDesconto() {
-        return cupomDesconto;
-    }
-
-    public void setCupomDesconto(String cupomDesconto) {
-        this.cupomDesconto = cupomDesconto;
     }
 
 }

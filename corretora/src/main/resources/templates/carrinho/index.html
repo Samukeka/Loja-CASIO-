@@ -33,7 +33,9 @@
     </table>
     <div class="total-container">
         <h3>Total do Pedido: R$ <span th:text="${#numbers.formatDecimal(total, 1, 2)}"></span></h3>
-        <button class="finalizar-compra">Finalizar Compra</button>
+        <a href="/checkout">
+            <button class="finalizar-compra">Finalizar Compra</button>
+        </a>
     </div>
 </div>
 

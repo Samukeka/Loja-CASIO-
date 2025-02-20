@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Checkout</title>
+</head>
+
+<body>
+    <h1>Finalizar Compra</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Preço</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item : ${carrinho}">
+                <td th:text="${item.produto.nome}"></td>
+                <td th:text="${item.quantidade}"></td>
+                <td th:text="${item.produto.preco}"></td>
+                <td th:text="${item.produto.preco * item.quantidade}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Frete: R$ <span th:text="${frete}"></span></p>
+    <p>Total: R$ <span th:text="${total + frete}"></span></p>
+
+    <form action="/finalizar" method="post">
+        <label>Forma de Pagamento:</label>
+        <select name="metodoPagamento">
+            <option value="PIX">PIX</option>
+            <option value="CARTAO">Cartão de Crédito</option>
+            <option value="BOLETO">Boleto</option>
+        </select>
+        <button type="submit">Finalizar Compra</button>
+    </form>
+</body>
+
+</html>

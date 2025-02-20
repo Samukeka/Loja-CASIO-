@@ -78,7 +78,7 @@
 
         <section class="catalogo">
             <div th:each="produto : ${produtos}" class="product-card">
-                <a th:href="@{/produto/view/{id}(id=${produto.id})}">
+                <a th:href="@{/produto/view/{id}(id=${produto.id})}" style="text-decoration: none;">
                     <div class="imagem_card">
 
                         <img class="produto_img" th:src="@{'/imagens_dos_produtos/' + ${produto.imagemPadrao}}" />

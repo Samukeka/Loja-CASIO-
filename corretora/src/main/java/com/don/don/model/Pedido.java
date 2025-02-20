@@ -1,8 +1,7 @@
 package com.don.don.model;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -14,27 +13,33 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_cliente")
-    private Cliente cliente;
+    private LocalDateTime dataPedido = LocalDateTime.now();
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-    private List<ItemPedido> itens = new ArrayList<>();
+    private List<ItemPedido> itens;
 
-    private BigDecimal valor_total;
-    private String status;
-    private String codigo_do_pedido;
+    private BigDecimal total;
 
-    @ManyToOne
-    @JoinColumn(name = "id_endereco")
-    private Endereco endereco_de_entrega;
-
-    @ManyToOne
-    @JoinColumn(name = "forma_de_pagamento")
-    private FormaDePagamento formaDePagamento;
-
-    private LocalDate data_do_pedido;
     private BigDecimal frete;
+
+    private String cupomDesconto;
+
+    private String metodoPagamento;
+
+    public String getMetodoPagamento() {
+        return metodoPagamento;
+    }
+
+    public void setMetodoPagamento(String metodoPagamento) {
+        this.metodoPagamento = metodoPagamento;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
+    @Enumerated(EnumType.STRING)
+    private StatusPedido status = StatusPedido.PENDENTE;
 
     public Long getId() {
         return id;
@@ -42,6 +47,14 @@ public class Pedido {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public LocalDateTime getDataPedido() {
+        return dataPedido;
+    }
+
+    public void setDataPedido(LocalDateTime dataPedido) {
+        this.dataPedido = dataPedido;
     }
 
     public List<ItemPedido> getItens() {
@@ -52,44 +65,12 @@ public class Pedido {
         this.itens = itens;
     }
 
-    public BigDecimal getValor_total() {
-        return valor_total;
+    public BigDecimal getTotal() {
+        return total;
     }
 
-    public void setValor_total(BigDecimal valor_total) {
-        this.valor_total = valor_total;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getCodigo_do_pedido() {
-        return codigo_do_pedido;
-    }
-
-    public void setCodigo_do_pedido(String codigo_do_pedido) {
-        this.codigo_do_pedido = codigo_do_pedido;
-    }
-
-    public Endereco getEndereco_de_entrega() {
-        return endereco_de_entrega;
-    }
-
-    public void setEndereco_de_entrega(Endereco endereco_de_entrega) {
-        this.endereco_de_entrega = endereco_de_entrega;
-    }
-
-    public LocalDate getData_do_pedido() {
-        return data_do_pedido;
-    }
-
-    public void setData_do_pedido(LocalDate data_do_pedido) {
-        this.data_do_pedido = data_do_pedido;
+    public void setTotal(BigDecimal total) {
+        this.total = total;
     }
 
     public BigDecimal getFrete() {
@@ -100,12 +81,20 @@ public class Pedido {
         this.frete = frete;
     }
 
-    public FormaDePagamento getFormaDePagamento() {
-        return formaDePagamento;
+    public String getCupomDesconto() {
+        return cupomDesconto;
     }
 
-    public void setFormaDePagamento(FormaDePagamento formaDePagamento) {
-        this.formaDePagamento = formaDePagamento;
+    public void setCupomDesconto(String cupomDesconto) {
+        this.cupomDesconto = cupomDesconto;
+    }
+
+    public StatusPedido getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusPedido status) {
+        this.status = status;
     }
 
     public Cliente getCliente() {

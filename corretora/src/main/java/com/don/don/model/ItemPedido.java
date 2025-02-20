@@ -9,6 +9,12 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class ItemPedido {
 
+    public ItemPedido(Pedido pedido, Produto produto, int quantidade) {
+        this.pedido = pedido;
+        this.produto = produto;
+        this.quantidade = quantidade;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
