@@ -33,7 +33,7 @@ public class HomeController {
 
         if (clienteLogado != null) {
             model.addAttribute("clienteLogado", true);
-            model.addAttribute("clienteId", clienteLogado.getId());
+            model.addAttribute("clienteI+d", clienteLogado.getId());
             model.addAttribute("nomeCliente", clienteLogado.getNome());
 
         } else {
