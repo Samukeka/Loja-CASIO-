@@ -113,9 +113,9 @@ public class BackOfficeController {
 
         String cargoUsuario = (String) session.getAttribute("cargo");
 
-        if (session == null || cargoUsuario == null) {
-            return "redirect:/backoffice/login";
-        }
+        // if (session == null || cargoUsuario == null) {
+        // return "redirect:/backoffice/login";
+        // }
 
         model.addAttribute("cargoUsuario", cargoUsuario);
         FuncionarioDto funcionarioDto = new FuncionarioDto();

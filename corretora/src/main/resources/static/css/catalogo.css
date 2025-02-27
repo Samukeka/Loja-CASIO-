@@ -65,7 +65,7 @@
 }
 
 body {
-    background-color: #00b7ff;
+    background-color: #e40500;
 }
 
 .container_total {
@@ -87,10 +87,10 @@ body {
 .catalogo {
     display: flex;
     background-color: rgb(43, 43, 43);
-    height: 800px;
     width: 100%;
     flex-wrap: wrap;
     flex-direction: row;
+    padding: 20px;
 
 }
 
@@ -133,4 +133,25 @@ body {
 .produto_img {
     max-width: 190px;
     max-height: 190px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    min-width: 150px;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
 }

@@ -76,24 +76,73 @@ public class ProdutoController {
     }
 
     @GetMapping("/searchByAtributo")
-    public String searchByAtributo(@RequestParam String tipoAtributo,
-            @RequestParam String valorAtributo,
+    public String catalogo(
+            @RequestParam(required = false) String tipoCatalogo,
+            @RequestParam(required = false) String tipoAtributo,
+            @RequestParam(required = false) String valorAtributo,
             Model model) {
-        List<Produto> produtos;
-        switch (tipoAtributo) {
-            case "serie":
-                produtos = produtoRepository.findBySerie(valorAtributo);
-                break;
-            case "colecao":
-                produtos = produtoRepository.findByColecao(valorAtributo);
-                break;
-            case "marca":
-                produtos = produtoRepository.findByMarca(valorAtributo);
-                break;
-            default:
-                produtos = new ArrayList<>();
+
+        List<Produto> produtos = new ArrayList<>();
+
+        // Se o usuário escolheu uma categoria como "Novidades"
+        if (tipoCatalogo != null && !tipoCatalogo.isEmpty()) {
+            switch (tipoCatalogo.toLowerCase()) {
+                case "destaques":
+                    produtos = produtoRepository.findByDestaqueTrue();
+                    break;
+                case "maisvendidos":
+                    produtos = produtoRepository.findByMaisVendidoTrue();
+                    break;
+                case "descontos":
+                    produtos = produtoRepository.findByDescontoTrue();
+                    break;
+                case "novidades":
+                    produtos = produtoRepository.findByNovidadeTrue();
+                    break;
+            }
         }
+        // Se o usuário filtrou por um atributo específico (Cor, Série, etc.)
+        else if (tipoAtributo != null && valorAtributo != null && !valorAtributo.isEmpty()) {
+            switch (tipoAtributo.toLowerCase()) {
+                case "serie":
+                    produtos = produtoRepository.findBySerie(valorAtributo);
+                    break;
+                case "colecao":
+                    produtos = produtoRepository.findByColecao(valorAtributo);
+                    break;
+                case "marca":
+                    produtos = produtoRepository.findByMarca(valorAtributo);
+                    break;
+                case "cor":
+                    produtos = produtoRepository.findByCor(valorAtributo);
+                    break;
+                case "estilo":
+                    produtos = produtoRepository.findByEstilo(valorAtributo);
+                    break;
+            }
+        }
+        // Se não há filtros, mostrar todos os produtos
+        else {
+            produtos = produtoRepository.findAll();
+        }
+
+        // Adicionando listas de atributos para os filtros
+        List<String> cores = produtoRepository.findDistinctCores();
+        List<String> series = produtoRepository.findDistinctSeries();
+        List<String> marcas = produtoRepository.findDistinctMarcas();
+        List<String> colecoes = produtoRepository.findDistinctColecoes();
+        List<String> estilos = produtoRepository.findDistinctEstilos();
+
         model.addAttribute("produtos", produtos);
+        model.addAttribute("cores", cores);
+        model.addAttribute("series", series);
+        model.addAttribute("marcas", marcas);
+        model.addAttribute("colecoes", colecoes);
+        model.addAttribute("estilos", estilos);
+        model.addAttribute("tipoCatalogoSelecionado", tipoCatalogo);
+        model.addAttribute("tipoAtributoSelecionado", tipoAtributo);
+        model.addAttribute("valorAtributoSelecionado", valorAtributo);
+
         return "visualizar/catalogo";
     }
 

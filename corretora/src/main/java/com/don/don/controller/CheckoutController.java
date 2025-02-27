@@ -36,6 +36,11 @@ public class CheckoutController {
             return "redirect:/carrinho";
         }
 
+        Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
+        if (cliente == null) {
+            return "redirect:/login";
+        }
+
         BigDecimal total = carrinho.stream()
                 .map(item -> item.getProduto().getPreco().multiply(BigDecimal.valueOf(item.getQuantidade())))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
@@ -58,9 +63,9 @@ public class CheckoutController {
             return "redirect:/carrinho";
         }
 
-        Cliente cliente = (Cliente) session.getAttribute("cliente");
+        Cliente cliente = (Cliente) session.getAttribute("clienteLogado");
         if (cliente == null) {
-            return "redirect:/login";
+            return "redirect:home/login";
         }
 
         Pedido pedido = new Pedido();
