@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device=width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/perfil.css">
+
+    <title>Home</title>
+
+
+</head>
+
+<style>
+    .card {
+        transition: transform 0.3s;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-img-top {
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+    }
+</style>
+
+<body>
+    <header class="cabecalho">
+        <div class="logo">
+            <a href="/"><img src="/images/logo.svg" alt="Logo"></a>
+        </div>
+
+        <div class="containerInfos">
+            <a alt="Descontos" th:href="@{/produto/searchByAtributo(tipoCatalogo='descontos')}"
+                style="text-decoration: none;">DESCONTOS</a>
+            <a alt="Novidades" th:href="@{/produto/searchByAtributo(tipoCatalogo='novidades')}"
+                style="text-decoration: none;">NOVIDADES</a>
+            <a alt="Modelos" th:href="@{/produto/searchByAtributo(tipoCatalogo='destaques')}"
+                style="text-decoration: none;">DESTAQUES</a>
+        </div>
+
+        <div class="container_buttons_search">
+            <input class="inputSearch" alt="campo de pesquisa" type="text" placeholder="Pesquisar...">
+            <div class="buttons">
+                <a href="/carrinho"><img src="/images/cart.svg" class="icons" alt="home"></a>
+                <a id="profile" th:href="${clienteLogado} ? 'cliente/perfil' : 'cliente/login'">
+                    <img src="/images/profile.svg" class="icons" alt="Perfil">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+
+        <div>
+            <span th:text="${nomeCliente}"></span></p>
+        </div>
+
+
+        <div th:if="${pedidos != null and !pedidos.isEmpty()}">
+            <div style="display: flex ;gap: 20px;">
+                <div th:each="pedido : ${pedidos}" class="container_card">
+                    <div th:each="item : ${pedido.itens}">
+                        <div class="card">
+                            <img th:src="@{/imagens_dos_produtos/{img}(img=${item.produto.imagemPadrao})}"
+                                class="card-img-top" alt="Imagem do relógio" style="height: 200px; object-fit: cover;">
+
+
+                            <!-- <div class="card-body">
+                                <h5 class="card-title" th:text="${item.produto.nome}"></h5>
+                                <p class="card-text">
+                                    Quantidade: <span th:text="${item.quantidade}"></span><br>
+                                    Comprado em: <span </p>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${pedidos == null or pedidos.isEmpty()}">
+            <div class="alert alert-info">Nenhum relógio comprado ainda.</div>
+        </div>
+
+
+
+
+
+
+
+
+
+</html>

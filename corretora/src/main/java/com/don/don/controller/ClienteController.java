@@ -1,5 +1,6 @@
 package com.don.don.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.don.don.model.Cliente;
 import com.don.don.model.ClienteDto;
+import com.don.don.model.Pedido;
 import com.don.don.repository.ClienteRepository;
 import com.don.don.repository.EnderecoRepository;
+import com.don.don.repository.PedidoRepository;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -34,6 +37,9 @@ public class ClienteController {
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
+    private PedidoRepository pedidoRepository;
+
+    @Autowired
     public ClienteController(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
     }
@@ -47,19 +53,16 @@ public class ClienteController {
 
     @GetMapping("/perfil")
     public String getPerfil(HttpServletRequest request, Model model) {
-
         HttpSession session = request.getSession();
         Cliente clienteLogado = (Cliente) session.getAttribute("clienteLogado");
+        List<Pedido> pedidos = pedidoRepository.findByClienteWithItems(clienteLogado);
 
-        if (clienteLogado != null) {
-            model.addAttribute("clienteLogado", true);
-            model.addAttribute("clienteId", clienteLogado.getId());
-            model.addAttribute("nomeCliente", clienteLogado.getNome());
+        model.addAttribute("nomeCliente", clienteLogado != null ? clienteLogado.getNome() : "");
 
-        } else {
-            model.addAttribute("clienteLogado", false);
-        }
+        model.addAttribute("clienteLogado", clienteLogado != null);
+        model.addAttribute("pedidos", pedidos);
 
+        model.addAttribute("clienteId", clienteLogado != null ? clienteLogado.getId() : null);
         return "cliente/perfil";
     }
 
@@ -71,10 +74,8 @@ public class ClienteController {
             Cliente cliente = clienteOptional.get();
 
             if (passwordEncoder.matches(clienteDto.getSenha(), cliente.getSenha())) {
-
                 HttpSession session = request.getSession();
                 session.setAttribute("clienteLogado", cliente);
-
                 return "redirect:/";
 
             } else {

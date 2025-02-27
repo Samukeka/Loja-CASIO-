@@ -15,9 +15,12 @@
         </div>
 
         <div class="containerInfos">
-            <a alt="Coleções">COLEÇÕES</a>
-            <a alt="Novidades">NOVIDADES</a>
-            <a alt="Modelos">MODELOS</a>
+            <a alt="Descontos" th:href="@{/produto/searchByAtributo(tipoCatalogo='descontos')}"
+                style="text-decoration: none;">DESCONTOS</a>
+            <a alt="Novidades" th:href="@{/produto/searchByAtributo(tipoCatalogo='novidades')}"
+                style="text-decoration: none;">NOVIDADES</a>
+            <a alt="Modelos" th:href="@{/produto/searchByAtributo(tipoCatalogo='destaques')}"
+                style="text-decoration: none;">DESTAQUES</a>
         </div>
 
         <div class="container_buttons_search">
@@ -33,47 +36,74 @@
     <main class="container_total">
         <section class="informacoes">
             <div class="quadrado">
-                <button class="buttonCatalogo">
+                <button class="buttonCatalogo" onclick="toggleDropdown('cores')">
                     Cores
                 </button>
-            </div>
-            <div class="quadrado">
-                <button class="buttonCatalogo">
-                    Modelos
-                </button>
-            </div>
-            <div class="quadrado">
-                <button class="buttonCatalogo">
-                    Marcas
-                </button>
-            </div>
-            <div class="quadrado">
-                <button class="buttonCatalogo">
-                    Coleção
-                </button>
+                <div id="cores" class="dropdown-content">
+                    <a th:each="cor : ${cores}"
+                        th:href="@{/produto/searchByAtributo(tipoAtributo='cor', valorAtributo=${cor})}"
+                        th:text="${cor}"></a>
+                </div>
             </div>
 
             <div class="quadrado">
-                <button class="buttonCatalogo">
-                    Estilo
-                </button>
-            </div>
-            <div class="quadrado">
-                <button class="buttonCatalogo">
-                    Gênero
-                </button>
-            </div>
-            <div class="quadrado">
-                <button class="buttonCatalogo">
-                    Estilo
-                </button>
-            </div>
-            <div class="quadrado">
-                <button class="buttonCatalogo">
+                <button class="buttonCatalogo" onclick="toggleDropdown('series')">
                     Série
                 </button>
+                <div id="series" class="dropdown-content">
+                    <a th:each="serie : ${series}"
+                        th:href="@{/produto/searchByAtributo(tipoAtributo='serie', valorAtributo=${serie})}"
+                        th:text="${serie}"></a>
+                </div>
+            </div>
+
+            <div class="quadrado">
+                <button class="buttonCatalogo" onclick="toggleDropdown('marcas')">
+                    Marcas
+                </button>
+                <div id="marcas" class="dropdown-content">
+                    <a th:each="marca : ${marcas}"
+                        th:href="@{/produto/searchByAtributo(tipoAtributo='marca', valorAtributo=${marca})}"
+                        th:text="${marca}"></a>
+                </div>
+            </div>
+
+            <div class="quadrado">
+                <button class="buttonCatalogo" onclick="toggleDropdown('colecoes')">
+                    Coleção
+                </button>
+                <div id="colecoes" class="dropdown-content">
+                    <a th:each="colecao : ${colecoes}"
+                        th:href="@{/produto/searchByAtributo(tipoAtributo='colecao', valorAtributo=${colecao})}"
+                        th:text="${colecao}"></a>
+                </div>
+            </div>
+
+            <div class="quadrado">
+                <button class="buttonCatalogo" onclick="toggleDropdown('estilos')">
+                    Estilo
+                </button>
+                <div id="estilos" class="dropdown-content">
+                    <a th:each="estilo : ${estilos}"
+                        th:href="@{/produto/searchByAtributo(tipoAtributo='estilo', valorAtributo=${estilo})}"
+                        th:text="${estilo}"></a>
+                </div>
+            </div>
+
+            <div class="quadrado">
+                <button class="buttonCatalogo" onclick="toggleDropdown('generos')">
+                    Gênero
+                </button>
+                <div id="generos" class="dropdown-content">
+                    <a th:each="genero : ${generos}"
+                        th:href="@{/produto/searchByAtributo(tipoAtributo='genero', valorAtributo=${genero})}"
+                        th:text="${genero}"></a>
+                </div>
             </div>
         </section>
+
+
+
 
 
         <section class="catalogo">
@@ -85,7 +115,7 @@
 
                     </div>
                     <div
-                        style="text-align: center; color: white; font-weight: bold; font-family: Arial, Helvetica, sans-serif; font-size: 25px; text-decoration: none;">
+                        style="text-align: center; color: white; font-weight: bold; font-family: Arial, Helvetica, sans-serif; font-size: 15px; text-decoration: none;">
                         <p style="text-decoration: none;" th:text="${produto.nome}"></p>
 
                     </div>
@@ -101,5 +131,17 @@
         </section>
     </main>
 </body>
+
+<script>
+    function toggleDropdown(id) {
+        let dropdown = document.getElementById(id);
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    }
+
+</script>
 
 </html>

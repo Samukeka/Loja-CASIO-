@@ -65,7 +65,7 @@
 }
 
 body {
-  background-color: #00b7ff;
+  background-color: #e40500;
 }
 
 
@@ -163,7 +163,7 @@ body {
 .maisProdutos {
   display: flex;
   flex-direction: row;
-
+  gap: 15px
 }
 
 .fotosProdutos {
@@ -181,18 +181,18 @@ body {
   pointer-events: none;
   z-index: -1;
   overflow: hidden;
-  padding: 10px;
 }
 
 .floating-word {
   position: absolute;
-  font-size: 15rem;
+  font-size: 8rem;
+  /* Reduzi o tamanho para melhor espaçamento */
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  color: rgb(255, 174, 0);
   font-weight: bold;
   white-space: nowrap;
+  opacity: 0.8;
+  /* Deixa mais suave */
   animation: moveHorizontal 10s linear infinite;
-
 }
 
 @keyframes moveHorizontal {
