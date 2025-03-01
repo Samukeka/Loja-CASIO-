@@ -58,6 +58,7 @@ public class ClienteController {
         List<Pedido> pedidos = pedidoRepository.findByClienteWithItems(clienteLogado);
 
         model.addAttribute("nomeCliente", clienteLogado != null ? clienteLogado.getNome() : "");
+        model.addAttribute("genero", clienteLogado != null ? clienteLogado.getGenero() : "");
 
         model.addAttribute("clienteLogado", clienteLogado != null);
         model.addAttribute("pedidos", pedidos);
