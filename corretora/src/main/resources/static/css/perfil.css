@@ -2,13 +2,14 @@ body {
     /* background-color: #00b7ff; */
     /* background-color: #ff0000; */
     background-color: #e40500;
+    flex: 1;
 }
 
 main {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .cabecalho {
@@ -302,6 +303,21 @@ p {
     /* Deixa mais suave */
     animation: moveHorizontal 10s linear infinite;
 }
+
+
+.containerCliente {
+    background-color: #515151;
+    width: 500px;
+    display: flex;
+    padding: 20px;
+
+}
+
+
+
+
+
+
 
 @keyframes moveHorizontal {
     from {
